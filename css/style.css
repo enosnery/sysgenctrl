@@ -1,0 +1,245 @@
+.centAlign{
+  display: block;
+  margin: 0 auto;
+}
+.logo{
+  display: block;
+  margin: 0 auto;
+  width: 40vw;
+  max-width: 200px;
+}
+.logoadm{
+  display: block;
+    margin: 0 auto;
+  float: right;
+  width: 10vw;
+}
+.logo2{
+  display: block;
+  margin: 0 auto;
+  width: 40vw;
+}
+
+.logoContainer{
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.loginButton{
+  margin-top: 30px;
+}
+.appBody{
+  height: 100vh;
+  min-height: 461px;
+  width: 100%;
+overflow-y: scroll;
+}
+.footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:40px;   /* Height of the footer */
+}
+
+.footerText {
+text-align: center;
+
+}
+.inputContainer{
+  top: 40vh;
+  margin: 20px;
+}
+
+.buttonContainer{
+  top: 50vh;
+  margin: 30px;
+}
+
+
+.loginInput{
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.passInput{
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+.insertCodeText{
+  text-align: center;
+  max-width: 75vw;
+  color: '#B9BABC';
+  font-family: "Verdana";
+  font-weight: bold;
+}
+.codeTextContainer{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.insertButtonContainer{
+  max-width: 375px;
+  width: 60vw;
+}
+.cancelButton{
+  width: 40%;
+  float: left;
+  font-size: 1.5em;
+  border: 1px solid #A8A8A8;
+  border-radius: 10px;
+  padding: 10px;
+}
+#cancel:hover{
+  text-decoration: none;
+}
+.seguirButton{
+  width: 40%;
+  float: right;
+  font-size: 1.5em;
+  border: 1px solid #A8A8A8;
+  border-radius: 10px;
+  padding: 10px;
+}
+.codeInput{
+  width: 60vw;
+  border: 1px solid #A8A8A8;
+  border-radius: 10px;
+  padding: 10px;
+}
+.productsContainer{
+padding: 10px;
+margin: 0 auto;
+}
+.prodContainer{
+width: 40%;
+display: inline-block;
+}
+table#prodTable{
+  width: 80vw;
+  display: block;
+  margin: 0 auto;
+}
+table#cadprodTable{
+  width: 100vw;
+}
+table#cadListItem{
+  width: 100vw;
+}
+.productsImage{
+  max-width: 55px;
+  max-height: 55px;
+  margin: 10px;
+}
+.glyphicon{
+  font-size: 30px;
+  color: green;
+}
+.totalContainer{
+  display: block;
+  margin: 0 auto;
+}
+#valorTotal{
+  border: 0;
+  margin-top: 40px;
+  text-align: center;
+}
+.pagarButton{
+  margin-top: 20px;
+}
+.iconeplus{
+  font-size: 20px;
+  color: gray;
+}
+.iconeplus:active{
+  color: green;
+}
+
+.iconeminus{
+  font-size: 20px;
+  color: gray;
+}
+.iconeminus:active{
+  color: red;
+}
+
+.customIcon{
+  font-size: 15px;
+  color: black;
+}
+.menuHeader{
+  border-bottom: 2px solid black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.searchBar{
+
+}
+
+.searchBarIcon{
+display: block;
+float: right;
+}
+.searchBarPlus{
+  margin-left: 15px;
+  color: green;
+display: block;
+float: right;
+}
+.listaCadastro{
+  overflow-y: scroll;
+}
+.detalheProdutoContainer{
+  display: block;
+  margin: 0 auto;
+  max-width: 80vw;
+}
+.cadProductsImage{
+  display: block;
+  float: left;
+  max-width: 55px;
+  max-height: 55px;
+  margin: 10px;
+}
+.prodDetailImg{
+  display: block;
+margin: 0 auto;
+max-width: 80vw;
+min-width: 40vw;
+height: 50vw;
+max-height: 50vw;
+margin-bottom: 20px;
+}
+
+.prodDetailInput{
+    width: 80vw;
+    border:none;
+    border-bottom: 2px solid gainsboro;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+
+}
+.detalheProdutoButtons{
+  margin-top: 30px;
+}
+
+
+table#cadprodTable tr{
+  width: 90vw;
+  border-bottom: 1px solid gainsboro;
+}
+table#cadprodTable td#cadProdImg{
+vertical-align: middle;
+text-align: left;
+width: 10%;
+}
+table#cadprodTable td#cadProdDesc{
+vertical-align: middle;
+text-align: left;
+width: 60%;
+}
+table#cadprodTable td#cadProdButton{
+vertical-align: middle;
+text-align: left;
+width: 15%;
+}
