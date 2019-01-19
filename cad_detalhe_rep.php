@@ -7,7 +7,7 @@ include("inc/conectar.inc");
 //include("/inc/verifica_sessao.inc");
 $index = $_SESSION['prodIndex'];
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT id, nome, picture_url, valor FROM produtos WHERE id = $index;";
+$produtos = "SELECT idusuario, nome, email FROM usuario WHERE idusuario = $index;";
 
 $resultado = pg_query($conexao, $produtos);
 
@@ -26,19 +26,18 @@ if ($num_linhas > 0)
 $i = 0 ;
   while ($row = pg_fetch_assoc($resultado)) {
 		$i++;
-  $imagem = $row['picture_url'];
-	$id = $row['id'];
+  $email = $row['email'];
+	$id = $row['idusuario'];
 	$nome = $row['nome'];
-	$valor = number_format($row['valor'], 2, '.', '');
-	echo "<div class='prodDetailImg'>";
-  echo "<img class='prodDetailImg img-responsive' src='$imagem' />";
-	echo "</div>";
-	echo "<input id='product-value-$i' class='form-control-file' style='margin-bottom:20px;' type='file' value='$nome'>";
 	echo "<input id='index' name='index' type='hidden' value='$id'>";
   echo "<label for='nome'>Nome</label>";
 	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' />";
-  echo "<label for='valor'>Valor</label>";
-	echo "<input id='valor' name='valor' class='prodDetailInput centAlign' value='$valor' />";
+  echo "<label for='email'>Valor</label>";
+	echo "<input id='email' name='email' class='prodDetailInput centAlign' value='$email' />";
+  echo "<label for='senha'>Senha</label>";
+	echo "<input id='btn-senha' name='senha' class='prodDetailInput centAlign' value='' disabled>";
+  echo "<button type='button' class='btn btn-primary' onclick='liberaSenha();'> Alterar Senha</button> ";
+  echo "</input>";
 }
 }
 

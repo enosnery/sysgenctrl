@@ -222,7 +222,40 @@ margin-bottom: 20px;
 .detalheProdutoButtons{
   margin-top: 30px;
 }
+.cadRepIcon{
+  font-size: 1.5em;
+}
+table#cadRepDesc{
+  padding: 10px;
+  margin-left: 10px;
+}
+table#cadRepTable tr{
+  width: 90vw;
+  border-bottom: 1px solid gainsboro;
+  padding: 10px;
+  height: 55px;
+}
+table#cadRepListItem td#cadProdImg{
+vertical-align: middle;
+text-align: left;
+width: 10%;
+}
+table#cadRepTable td#cadProdDesc{
+vertical-align: middle;
+text-align: left;
+width: 60%;
+}
+table#cadRepTable td#cadProdButton{
+vertical-align: middle;
+text-align: left;
+width: 10%;
+right:10;
+}
 
+#btn-senha{
+  border:none;
+  background-color: lightgray;
+}
 
 table#cadprodTable tr{
   width: 90vw;

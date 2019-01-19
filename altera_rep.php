@@ -7,22 +7,29 @@ include("inc/conectar.inc");
 //include("/inc/verifica_sessao.inc");
 $id = $_POST['index'];
 $nome = $_POST['nome'];
-$valor = $_POST['valor'];
+$email = $_POST['email'];
+$senha = isset($_POST['senha']) ? $_POST['senha'] : null ;
 
 echo $id;
 echo "<br>";
 echo $nome;
 echo "<br>";
-echo $valor;
+echo $email;
+echo "<br>";
+if ($senha !== null) {
+    echo $senha;
+}else{
+  echo "teve foi nada";
+}
 //query que seleciona o usuario e a senha do login informados
-$produtos = "UPDATE produtos SET nome = '$nome', valor = '$valor' WHERE id = $id;";
+//$produtos = "UPDATE usuario SET nome = '$nome', email = '$valor' WHERE id = $id;";
 
-$resultado = pg_query($conexao, $produtos);
+//$resultado = pg_query($conexao, $produtos);
 
 
 //verifica se a query retornou algum resultado
 //print odbc_errormsg($conexao);
-$num_linhas = pg_affected_rows($resultado);
+// $num_linhas = pg_affected_rows($resultado);
 //
 // //echo $num_linhas." - Linhas</br>";
 // //echo $res." - Resultado</br>"
@@ -30,9 +37,9 @@ $num_linhas = pg_affected_rows($resultado);
 // //$login = $resultado['LOGIN'];
 //
 // //se retonou algum resultado, executar o registro do usuario
-if ($num_linhas > 0)
-	{
-    header('Location: cad_produto_detail.php');}
+// if ($num_linhas > 0)
+	// {
+    // header('Location: cad_detalhe_rep.php');}
 // $i = 0 ;
 //   while ($row = pg_fetch_assoc($resultado)) {
 // 		$i++;

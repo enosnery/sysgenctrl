@@ -13,8 +13,8 @@ include('inc/cabecalho.inc');
                <span class="customIcon glyphicon glyphicon-shopping-cart" ></span>
                <button type="button">Cadastro de Produtos</button>
              </div>
-             <div class="list-group-item list-group-item-action" >
-               <span class="customIcon glyphicon glyphicon-briefcase" onclick="voltar();"></span>
+             <div class="list-group-item list-group-item-action" onclick="redirectTo('cadrepresentante');">
+               <span class="customIcon glyphicon glyphicon-briefcase" ></span>
                <button type="button">Cadastro de Representantes</button>
              </div>
              <div class="list-group-item list-group-item-action" >
