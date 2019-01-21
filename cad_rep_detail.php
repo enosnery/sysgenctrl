@@ -30,7 +30,7 @@ include('inc/cabecalho.inc');
     $("#senha").toggle();
   }
   function voltar() {
-    window.location = "cadproduto.php";
+    window.location = "cadrepresentante.php";
   }
   </script>
   </html>
