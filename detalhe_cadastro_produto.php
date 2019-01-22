@@ -7,7 +7,7 @@ include("inc/conectar.inc");
 //include("/inc/verifica_sessao.inc");
 $index = $_SESSION['prodIndex'];
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT id, nome, picture_url, valor FROM produtos WHERE id = $index;";
+$produtos = "SELECT id, descricao, picture_url, codigo, valor FROM produtos WHERE id = $index;";
 
 $resultado = pg_query($conexao, $produtos);
 
@@ -28,7 +28,8 @@ $i = 0 ;
 		$i++;
   $imagem = $row['picture_url'];
 	$id = $row['id'];
-	$nome = $row['nome'];
+	$nome = $row['descricao'];
+  $cod = $row['codigo'];
 	$valor = number_format($row['valor'], 2, '.', '');
 	echo "<div class='prodDetailImg'>";
   echo "<img class='prodDetailImg img-responsive' src='$imagem' />";
@@ -39,6 +40,8 @@ $i = 0 ;
 	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' />";
   echo "<label for='valor'>Valor</label>";
 	echo "<input id='valor' name='valor' class='prodDetailInput centAlign' value='$valor' />";
+  echo "<label for='valor'>Código</label>";
+	echo "<input id='valor' name='codigo' class='prodDetailInput centAlign' value='$cod' />";
 }
 }
 

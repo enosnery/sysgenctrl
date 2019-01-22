@@ -4,7 +4,7 @@ include("inc/conectar.inc");
 //include("/inc/verifica_sessao.inc");
 
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT id, descricao, picture_url FROM produtos ORDER BY id;";
+$produtos = "SELECT idusuario, nome, email  FROM usuario WHERE is_motorista = true ORDER BY idusuario;";
 
 $resultado = pg_query($conexao, $produtos);
 
@@ -21,31 +21,29 @@ $num_linhas = pg_num_rows($resultado);
 if ($num_linhas > 0)
 	{
 $i = 0 ;
-echo "<table id=cadprodTable>";
+echo "<table id=cadRepTable>";
 echo "<tr>";
   while ($row = pg_fetch_assoc($resultado)) {
 		$i++;
-  $imagem = $row['picture_url'];
-	$id = $row['id'];
-	$nome = $row['descricao'];
+
+	$id = $row['idusuario'];
+	$nome = $row['nome'];
+
 	echo "<td style='width:90vw'> ";
 	echo "<table id='cadListItem'>";
 	echo "<tr>";
-	echo "<td id='cadProdImg'>";
+  echo "<td id='cadRepDesc'>";
+	echo "<span style='margin-left:20px;'>$nome";
+	echo "</span>";
 	echo "<input id='product-id-$i' type='hidden' value='$id'>";
 	echo "<input id='product-value-$i' type='hidden' value='$nome'>";
-  echo "<img class='cadProductsImage img-responsive' src='$imagem' />";
-	echo "</td>";
-  echo "<td id='cadProdDesc'>";
-	echo "<span class='nome'>$nome";
-	echo "</span>";
 	echo "</td>";
 	echo "<td id='cadProdButton'>";
-	echo "<a class='glyphicon glyphicon-pencil' onclick='goToDetail($id)'>";
+	echo "<a class='cadRepIcon glyphicon glyphicon-pencil' onclick='goToDetail($id)'>";
 	echo "</a>";
 	echo "</td>";
 	echo "<td id='cadProdButton'>";
-	echo "<a class='glyphicon glyphicon-trash' onclick='removeItem($id)'>";
+	echo "<a class='cadRepIcon glyphicon glyphicon-trash' onclick='removeItem($id)'>";
 	echo "</a>";
 	echo "</td>";
 	echo "</tr>";

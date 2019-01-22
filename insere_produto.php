@@ -5,14 +5,14 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 }
 include("inc/conectar.inc");
 //include("/inc/verifica_sessao.inc");
-$id = $_POST['index'];
+
 $nome = $_POST['nome'];
 $valor = $_POST['valor'];
 $codigo = $_POST['codigo'];
 
-$produtos = "UPDATE produtos SET nome = $1, valor = $2, codigo = $3 WHERE id = $4;";
+$produtos = "INSERT INTO produtos (descricao, valor, codigo) VALUES  ($1, $2, $3);";
 $resultado = pg_prepare($conexao, "query_login", $produtos);
-$resultado = pg_execute($conexao, "query_login", array($nome, $valor, $codigo, $id));
+$resultado = pg_execute($conexao, "query_login", array($nome, $valor, $codigo));
 $num_linhas = pg_affected_rows($resultado);
 
 if ($num_linhas > 0)

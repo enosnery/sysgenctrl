@@ -17,12 +17,12 @@ include('inc/cabecalho.inc');
                <span class="customIcon glyphicon glyphicon-briefcase" ></span>
                <button type="button">Cadastro de Representantes</button>
              </div>
-             <div class="list-group-item list-group-item-action" >
-               <span class="customIcon glyphicon glyphicon-user" onclick="voltar();"></span>
+             <div class="list-group-item list-group-item-action" onclick="redirectTo('cadusuario');">
+               <span class="customIcon glyphicon glyphicon-user" ></span>
                <button type="button">Cadastro de Usuários</button>
              </div>
-             <div class="list-group-item list-group-item-action" >
-               <span class="customIcon glyphicon glyphicon-phone" onclick="voltar();"></span>
+             <div class="list-group-item list-group-item-action" onclick="redirectTo('cadmotorista');">
+               <span class="customIcon glyphicon glyphicon-phone"></span>
                <button type="button">Cadastro de Motoristas</button>
              </div>
              <div class="list-group-item list-group-item-action" >

@@ -7,7 +7,7 @@ include('inc/cabecalho.inc');
            <div class="list-group">
              <div class="menuHeader list-group-item list-group-item-action" >
                <span class="customIcon glyphicon glyphicon-menu-left" onclick="voltar();"></span>
-               <button type="button">Representantes</button>
+               <button type="button">Usuários</button>
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
            <div class="list-group-item list-group-item-action">
@@ -16,7 +16,7 @@ include('inc/cabecalho.inc');
                 <span class="searchBarIcon glyphicon glyphicon-search" onclick="voltar();"></span>
            </div>
            <div id="listaCadastro" class="listaCadastro">
-             <?php include('cad_lista_representantes.php')?>
+             <?php include('cad_lista_motorista.php')?>
            </div>
    </div>
 
@@ -29,7 +29,7 @@ include('inc/cabecalho.inc');
     window.location = "menu_admin.php";
   }
   function goToDetail(index) {
-    $.post("redirect.php", {index: index}, function (result){ window.location="cad_rep_detail.php";});
+    $.post("redirect.php", {index: index}, function (result){ window.location="cad_mot_detail.php";});
   }
   function pesquisar() {
     var input, filter, ul, li, a, i, txtValue;

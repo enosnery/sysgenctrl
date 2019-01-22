@@ -11,11 +11,11 @@ include('inc/cabecalho.inc');
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
            <div class="list-group-item list-group-item-action">
-             <input type="text" placeholder="Pesquisar..." />
-             <span class="searchBarPlus glyphicon glyphicon-plus" onclick="voltar();"></span>
+             <input id="pesquisa" type="text" placeholder="Pesquisar..." onkeyup="pesquisar();"/>
+             <span class="searchBarPlus glyphicon glyphicon-plus" onclick="addNewProd();"></span>
                 <span class="searchBarIcon glyphicon glyphicon-search" onclick="voltar();"></span>
            </div>
-           <div class="listaCadastro">
+           <div id="listaCadastro" class="listaCadastro">
              <?php include('cad_lista_produtos.php')?>
            </div>
    </div>
@@ -31,5 +31,25 @@ include('inc/cabecalho.inc');
   function goToDetail(index) {
     $.post("redirect.php", {index: index}, function (result){ window.location="cad_produto_detail.php";});
   }
+  function addNewProd(){
+    window.location="add_new_produto.php";
+  }
+
+  function pesquisar() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("pesquisa");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("listaCadastro");
+    li = ul.getElementsByTagName("span");
+    for (i = 0; i < li.length; i++) {
+        a = li[i];
+        txtValue = a.outerText || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].parentElement.parentElement.style.display = "";
+        } else {
+            li[i].parentElement.parentElement.style.display = "none";
+        }
+    }
+}
   </script>
   </html>

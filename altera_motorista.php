@@ -24,5 +24,5 @@ $num_linhas = pg_affected_rows($resultado);
 
 if ($num_linhas > 0)
 	{
-    header('Location: cad_detalhe_rep.php');}
+    header('Location: cad_detalhe_motorista.php');}
 ?>
