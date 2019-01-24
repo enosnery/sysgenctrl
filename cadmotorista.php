@@ -7,7 +7,7 @@ include('inc/cabecalho.inc');
            <div class="list-group">
              <div class="menuHeader list-group-item list-group-item-action" >
                <span class="customIcon glyphicon glyphicon-menu-left" onclick="voltar();"></span>
-               <button type="button">Usuários</button>
+               <button type="button">Motoristas</button>
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
            <div class="list-group-item list-group-item-action">
