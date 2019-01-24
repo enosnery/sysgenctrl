@@ -43,7 +43,7 @@ echo "<tr>";
 	echo "</a>";
 	echo "</td>";
 	echo "<td id='cadProdButton'>";
-	echo "<a class='cadRepIcon glyphicon glyphicon-trash' onclick='removeItem($id)'>";
+	echo "<a class='cadRepIcon glyphicon glyphicon-trash' onclick='removeRep($id)'>";
 	echo "</a>";
 	echo "</td>";
 	echo "</tr>";

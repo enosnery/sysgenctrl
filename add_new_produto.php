@@ -11,21 +11,20 @@ include('inc/cabecalho.inc');
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
           </div>
-          <form id="alteraProd" action="insere_produto.php" method="post">
+
            <div class="detalheProdutoContainer">
            	<input id='product-value-$i' class='form-control-file' style='margin-bottom:20px;' type='file' value='$nome'>
              <label for='nome'>Nome</label>
            	<input id='nome' name='nome' class='prodDetailInput centAlign'/>
              <label for='valor'>Valor</label>
            	<input id='valor' name='valor' class='prodDetailInput centAlign' />
-             <label for='valor'>Código</label>
-           	<input id='valor' name='codigo' class='prodDetailInput centAlign'/>
+             <label for='codigo'>Código</label>
+           	<input id='codigo' name='codigo' class='prodDetailInput centAlign'/>
              <div class="detalheProdutoButtons">
                <button type='button' id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>
-               <button type='submit' class="btn btn-link seguirButton" title="Alterar" >Alterar</button>
+               <button type='button' class="btn btn-link seguirButton" title="Inserir" onclick="confirmaInclude();">Inserir</button>
              </div>
            </div>
-        </form>
 
 
      </div>
@@ -34,7 +33,24 @@ include('inc/cabecalho.inc');
   <script type="text/javascript">
   $(function() {
     $('#valor').maskMoney();
-  })
+  });
+  function confirmaInclude() {
+    var nome = document.getElementById("nome").value;
+    var valor = document.getElementById("valor").value;
+    var codigo = document.getElementById("codigo").value;
+
+
+    if(confirm("Confirma a inclusão do produto " + nome + "?")){
+    $.post("insere_produto.php",
+     {nome: nome,
+      valor: valor,
+      codigo: codigo
+    }, function (result){
+      alert(result);
+      window.location="cadproduto.php";
+    });
+    };
+  }
   function voltar() {
     window.location = "cadproduto.php";
   }

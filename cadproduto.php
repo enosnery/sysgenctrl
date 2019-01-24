@@ -13,7 +13,7 @@ include('inc/cabecalho.inc');
            <div class="list-group-item list-group-item-action">
              <input id="pesquisa" type="text" placeholder="Pesquisar..." onkeyup="pesquisar();"/>
              <span class="searchBarPlus glyphicon glyphicon-plus" onclick="addNewProd();"></span>
-                <span class="searchBarIcon glyphicon glyphicon-search" onclick="voltar();"></span>
+                <span class="searchBarIcon glyphicon glyphicon-search" onclick="focusPesquisa();"></span>
            </div>
            <div id="listaCadastro" class="listaCadastro">
              <?php include('cad_lista_produtos.php')?>
@@ -28,8 +28,19 @@ include('inc/cabecalho.inc');
   function voltar() {
     window.location = "menu_admin.php";
   }
+  function focusPesquisa(){
+    $("#pesquisa").focus();
+  }
   function goToDetail(index) {
     $.post("redirect.php", {index: index}, function (result){ window.location="cad_produto_detail.php";});
+  }
+  function removeProd(index) {
+    if(confirm("Deseja realmente remover esse produto?")){
+    $.post("exclude_prod.php", {index: index}, function (result){
+      alert(result);
+      window.location="cadproduto.php";
+    });
+    };
   }
   function addNewProd(){
     window.location="add_new_produto.php";

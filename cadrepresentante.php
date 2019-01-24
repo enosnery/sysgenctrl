@@ -12,8 +12,8 @@ include('inc/cabecalho.inc');
              </div>
            <div class="list-group-item list-group-item-action">
              <input id="pesquisa" type="text" placeholder="Pesquisar..." onkeyup="pesquisar();"/>
-             <span class="searchBarPlus glyphicon glyphicon-plus" onclick="voltar();"></span>
-                <span class="searchBarIcon glyphicon glyphicon-search" onclick="voltar();"></span>
+             <span class="searchBarPlus glyphicon glyphicon-plus" onclick="addNewRep();"></span>
+                <span class="searchBarIcon glyphicon glyphicon-search" onclick="focusPesquisa();"></span>
            </div>
            <div id="listaCadastro" class="listaCadastro">
              <?php include('cad_lista_representantes.php')?>
@@ -28,8 +28,22 @@ include('inc/cabecalho.inc');
   function voltar() {
     window.location = "menu_admin.php";
   }
+  function focusPesquisa(){
+    $("#pesquisa").focus();
+  }
   function goToDetail(index) {
     $.post("redirect.php", {index: index}, function (result){ window.location="cad_rep_detail.php";});
+  }
+  function removeRep(index) {
+    if(confirm("Deseja realmente remover esse representante?")){
+    $.post("exclude_rep.php", {index: index}, function (result){
+      alert(result);
+      window.location="cadrepresentante.php";
+    });
+    };
+  }
+  function addNewRep(){
+    window.location="add_new_representante.php";
   }
   function pesquisar() {
     var input, filter, ul, li, a, i, txtValue;

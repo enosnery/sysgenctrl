@@ -32,7 +32,7 @@ $i = 0 ;
 	echo "<input id='index' name='index' type='hidden' value='$id'>";
   echo "<label for='nome'>Nome</label>";
 	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' />";
-  echo "<label for='email'>Valor</label>";
+  echo "<label for='email'>Email</label>";
 	echo "<input id='email' name='email' class='prodDetailInput centAlign' value='$email' />";
   echo "<label for='senha'>Senha</label>";
 	echo "<input id='btn-senha' name='senha' class='prodDetailInput centAlign' value='' disabled>";

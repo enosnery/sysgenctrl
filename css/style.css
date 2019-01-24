@@ -276,16 +276,19 @@ right:10;
 table#cadprodTable tr{
   width: 90vw;
   border-bottom: 1px solid gainsboro;
+  height: 55px;
 }
 table#cadprodTable td#cadProdImg{
 vertical-align: middle;
 text-align: left;
 width: 10%;
+min-width: 55px;
 }
 table#cadprodTable td#cadProdDesc{
 vertical-align: middle;
 text-align: left;
 width: 60%;
+max-width: 185px;
 }
 table#cadprodTable td#cadProdButton{
 vertical-align: middle;

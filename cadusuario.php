@@ -12,8 +12,8 @@ include('inc/cabecalho.inc');
              </div>
            <div class="list-group-item list-group-item-action">
              <input id="pesquisa" type="text" placeholder="Pesquisar..." onkeyup="pesquisar();"/>
-             <span class="searchBarPlus glyphicon glyphicon-plus" onclick="voltar();"></span>
-                <span class="searchBarIcon glyphicon glyphicon-search" onclick="voltar();"></span>
+             <span class="searchBarPlus glyphicon glyphicon-plus" onclick="addNewUser();"></span>
+                <span class="searchBarIcon glyphicon glyphicon-search" onclick="focusPesquisa();"></span>
            </div>
            <div id="listaCadastro" class="listaCadastro">
              <?php include('cad_lista_usuario.php')?>
@@ -30,6 +30,20 @@ include('inc/cabecalho.inc');
   }
   function goToDetail(index) {
     $.post("redirect.php", {index: index}, function (result){ window.location="cad_usu_detail.php";});
+  }
+  function focusPesquisa(){
+    $("#pesquisa").focus();
+  }
+  function removeUser(index) {
+    if(confirm("Deseja realmente remover esse usuário?")){
+    $.post("exclude_usuario.php", {index: index}, function (result){
+      alert(result);
+      window.location="cadusuario.php";
+    });
+    };
+  }
+  function addNewUser(){
+    window.location="add_new_user.php";
   }
   function pesquisar() {
     var input, filter, ul, li, a, i, txtValue;

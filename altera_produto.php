@@ -10,7 +10,7 @@ $nome = $_POST['nome'];
 $valor = $_POST['valor'];
 $codigo = $_POST['codigo'];
 
-$produtos = "UPDATE produtos SET nome = $1, valor = $2, codigo = $3 WHERE id = $4;";
+$produtos = "UPDATE produtos SET descricao = $1, valor = $2, codigo = $3 WHERE id = $4;";
 $resultado = pg_prepare($conexao, "query_login", $produtos);
 $resultado = pg_execute($conexao, "query_login", array($nome, $valor, $codigo, $id));
 $num_linhas = pg_affected_rows($resultado);
