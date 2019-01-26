@@ -4,7 +4,7 @@ use Google\Cloud\Storage\StorageClient;
 
 $storage = new StorageClient();
 
-$bucket = $storage->bucket('my_bucket');
+$bucket = $storage->bucket('cloudwebbucket');
 
 // Upload a file to the bucket.
 $bucket->upload(
