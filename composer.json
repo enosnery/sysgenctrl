@@ -1,5 +1,6 @@
 {
     "require": {
-        "google/cloud-storage": "^1.10"
+        "google/cloud-storage": "^1.10",
+        "gerencianet/gerencianet-sdk-php": "^2.3"
     }
 }

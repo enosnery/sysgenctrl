@@ -94,6 +94,13 @@ class ComposerStaticInit0b37b0311742affa5186acd9baf4d0a0
                 0 => __DIR__ . '/..' . '/rize/uri-template/src',
             ),
         ),
+        'G' => 
+        array (
+            'Gerencianet' => 
+            array (
+                0 => __DIR__ . '/..' . '/gerencianet/gerencianet-sdk-php/src',
+            ),
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)

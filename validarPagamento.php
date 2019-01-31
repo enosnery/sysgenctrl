@@ -1,6 +1,5 @@
 <?php
-
-include __DIR__.'/api_v2/vendor/autoload.php'; // caminho relacionado a SDK
+require __DIR__.'/vendor/autoload.php'; // caminho relacionado a SDK
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
@@ -14,40 +13,48 @@ $options = [
   'sandbox' => true // altere conforme o ambiente (true = desenvolvimento e false = producao)
 ];
 
-$item_1 = [
-    'name' => 'Item 1', // nome do item, produto ou serviço
-    'amount' => 1, // quantidade
-    'value' => 1000 // valor (1000 = R$ 10,00)
+// $charge_id refere-se ao ID da transação gerada anteriormente
+$params = [
+  'id' => $charge_id
 ];
 
-$item_2 = [
-    'name' => 'Item 2', // nome do item, produto ou serviço
-    'amount' => 2, // quantidade
-    'value' => 2000 // valor (2000 = R$ 20,00)
+$paymentToken = '6426f3abd8688639c6772963669bbb8e0eb3c319'; // payment_token obtido na 1ª etapa (através do Javascript único por conta Gerencianet)
+
+$customer = [
+  'name' => 'Gorbadoc Oldbuck', // nome do cliente
+  'cpf' => '94271564656' , // cpf do cliente
+  'email' => 'email_do_cliente@servidor.com.br' , // endereço de email do cliente
+  'phone_number' => '5144916523', // telefone do cliente
+  'birth' => '1990-05-20' // data de nascimento do cliente
 ];
 
-$items =  [
-    $item_1,
-    $item_2
+$billingAddress = [
+  'street' => 'Street 3',
+  'number' => 10,
+  'neighborhood' => 'Bauxita',
+  'zipcode' => '35400000',
+  'city' => 'Ouro Preto',
+  'state' => 'MG',
 ];
 
-// Exemplo para receber notificações da alteração do status da transação.
-// $metadata = ['notification_url'=>'sua_url_de_notificacao_.com.br']
-// Outros detalhes em: https://dev.gerencianet.com.br/docs/notificacoes
+$creditCard = [
+  'installments' => 1, // número de parcelas em que o pagamento deve ser dividido
+  'billing_address' => $billingAddress,
+  'payment_token' => $paymentToken,
+  'customer' => $customer
+];
 
-// Como enviar seu $body com o $metadata
-// $body  =  [
-//    'items' => $items,
-//    'metadata' => $metadata
-// ];
+$body = [
+  'payment' => $payment
+];
 
-$body  =  [
-    'items' => $items
+$payment = [
+  'credit_card' => $creditCard // forma de pagamento (credit_card = cartão)
 ];
 
 try {
     $api = new Gerencianet($options);
-    $charge = $api->createCharge([], $body);
+    $charge = $api->payCharge($params, $body);
 
     print_r($charge);
 } catch (GerencianetException $e) {
@@ -56,5 +63,4 @@ try {
     print_r($e->errorDescription);
 } catch (Exception $e) {
     print_r($e->getMessage());
-}
-?>
+}?>

@@ -3,7 +3,7 @@ include("inc/conectar.inc");
 //include("/inc/verifica_sessao.inc");
 
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT id, nome, picture_url, valor FROM produtos ORDER BY id;";
+$produtos = "SELECT id, descricao, picture_url, valor FROM produtos ORDER BY id;";
 
 $resultado = pg_query($conexao, $produtos);
 
@@ -26,7 +26,7 @@ $i = 0 ;
 		$i++;
   $imagem = $row['picture_url'];
 	$id = $row['id'];
-	$value = $row['valor'];
+	$value = number_format($row['valor'], 2, '.', '');
   echo "<td class='col-md-6 centAlign'> ";
 	echo "<table>";
 	echo "<tr>";

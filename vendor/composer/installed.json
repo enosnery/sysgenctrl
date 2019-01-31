@@ -48,6 +48,66 @@
         "homepage": "https://github.com/firebase/php-jwt"
     },
     {
+        "name": "gerencianet/gerencianet-sdk-php",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gerencianet/gn-api-sdk-php.git",
+            "reference": "81c38b68401a225f666b8934c108fbdb77b14851"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/gerencianet/gn-api-sdk-php/zipball/81c38b68401a225f666b8934c108fbdb77b14851",
+            "reference": "81c38b68401a225f666b8934c108fbdb77b14851",
+            "shasum": ""
+        },
+        "require": {
+            "guzzlehttp/guzzle": "^6.0.0",
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "codeclimate/php-test-reporter": "^0.1.2",
+            "phpunit/phpunit": "~4.6"
+        },
+        "time": "2019-01-03T14:09:25+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Gerencianet": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Cecília Deveza"
+            },
+            {
+                "name": "Danniel Hugo"
+            },
+            {
+                "name": "Francisco Thiene"
+            },
+            {
+                "name": "Talita Campos"
+            },
+            {
+                "name": "Thomaz Feitoza"
+            },
+            {
+                "name": "Filipe Mata"
+            },
+            {
+                "name": "Thiago Resende"
+            }
+        ],
+        "description": "GN API SDK PHP"
+    },
+    {
         "name": "google/auth",
         "version": "v1.4.0",
         "version_normalized": "1.4.0.0",
