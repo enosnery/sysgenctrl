@@ -53,7 +53,7 @@ $bucket -> upload(fopen($temp,'r'),[
   	{
       header("cadproduto.php");}
       else{
-        header("cadproduto");
+        header("cadproduto.php");
       }
 
 }
