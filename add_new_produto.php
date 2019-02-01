@@ -44,9 +44,7 @@ include('inc/cabecalho.inc');
 
 
     if(confirm("Confirma a inclusão do produto " + nome + "?")){
-      console.log("entrou no confirm");
       $("#novoMetodo").submit(function(e) {
-        console.log("entrou no submit");
     // e.preventDefault();
     var formData = new FormData(this);
 

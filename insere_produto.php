@@ -51,9 +51,9 @@ $bucket -> upload(fopen($temp,'r'),[
 
   if ($num_linhas > 0)
   	{
-      echo "Produto Cadastrado com Sucesso!";}
+      header("cadproduto.php");}
       else{
-        echo "Ocorreu um problema com a inclusão do Produto.";
+        header("cadproduto");
       }
 
 }
