@@ -5,7 +5,7 @@
 // $senha = '';
 // $banco = 'servidor';
 // $conexao = new mysqli($servidor, $usuario, $senha, $banco);
-$conexao = pg_pconnect("host=35.232.23.81 port=5432 dbname=Market user=postgres password=postgres")
+$conexao = pg_connect("host=35.232.23.81 port=5432 dbname=Market user=postgres password=postgres")
 //$servidor = '127.0.0.1';
 //$usuario = 'root';
 //$senha = '';

@@ -4,7 +4,7 @@ if(session_status() !== PHP_SESSION_ACTIVE){
     session_start();
 }
 include("inc/conectar.inc");
-//include("/inc/verifica_sessao.inc");
+include("/inc/verifica_sessao.inc");
 $id = $_POST['index'];
 
 $produtos = "DELETE FROM usuario WHERE idusuario = $1;";

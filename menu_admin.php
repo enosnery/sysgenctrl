@@ -1,5 +1,6 @@
 <?php
 include('inc/cabecalho.inc');
+include("inc/verifica_sessao.inc");
 ?>
 <body>
          <div id="appBody">
@@ -25,8 +26,8 @@ include('inc/cabecalho.inc');
                <span class="customIcon glyphicon glyphicon-phone"></span>
                <button type="button">Cadastro de Motoristas</button>
              </div>
-             <div class="list-group-item list-group-item-action" >
-               <span class="customIcon glyphicon glyphicon-transfer" onclick="voltar();"></span>
+             <div class="list-group-item list-group-item-action" onclick="redirectTo('estoque')">
+               <span class="customIcon glyphicon glyphicon-transfer"></span>
                <button type="button">Estoque/Transferência</button>
              </div>
              <div class="list-group-item list-group-item-action" >

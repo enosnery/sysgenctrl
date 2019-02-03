@@ -1,7 +1,7 @@
 <?php
 
 include("inc/conectar.inc");
-//include("/inc/verifica_sessao.inc");
+include("/inc/verifica_sessao.inc");
 
 //query que seleciona o usuario e a senha do login informados
 $produtos = "SELECT idusuario, nome, email  FROM usuario WHERE not is_usuario_representante and not is_usuario_adm and not is_motorista ORDER BY idusuario;";

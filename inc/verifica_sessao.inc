@@ -1,8 +1,7 @@
 <?php
-//Verificando se o usuario está logado
-if (!isset($_SESSION['$login'])) {
-	echo "Efetue o Login no Site</br>";
-	echo "<a href='index.php'> Login </a>";
+//Verificando se o usuario estï¿½ logado
+if (!isset($_SESSION['$login'])||$_SESSION['is_adm']!=='t') {
+	header("Location: index.php");
 	exit;
 }
 ?>

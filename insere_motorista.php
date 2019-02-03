@@ -6,7 +6,7 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 }
 include("inc/conectar.inc");
 // include("envia_foto.php");
-//include("/inc/verifica_sessao.inc");
+include("/inc/verifica_sessao.inc");
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];

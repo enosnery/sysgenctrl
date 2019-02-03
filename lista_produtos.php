@@ -1,9 +1,10 @@
 <?php
 include("inc/conectar.inc");
-//include("/inc/verifica_sessao.inc");
-
+include("/inc/verifica_sessao.inc");
+$idmotorista = $_SESSION['$motorista'];
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT id, descricao, picture_url, valor FROM produtos ORDER BY id;";
+$produtos = "SELECT p.id, p.descricao, p.picture_url, p.valor, e.quantidade_atual FROM produtos p inner join estoque_motorista e on e.id_produto = p.id where e.idmotorista = $idmotorista ORDER BY id;";
+
 
 $resultado = pg_query($conexao, $produtos);
 

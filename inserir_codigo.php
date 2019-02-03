@@ -14,14 +14,12 @@ include('inc/cabecalho.inc');
                    </div>
 
                    <div class="inputContainer">
-                     <input class="centAlign codeInput" name="codigo" type="text"  value="" maxlength="200"  tabindex="1"/>
+                     <input id="codigo" class="centAlign codeInput" name="codigo" type="text"  value="" maxlength="11"  tabindex="1"/>
                    </div>
                    <div class="centAlign insertButtonContainer">
                          <button id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>
-                         <form class="" action="verifica_codigo.php" method="post">
-                         <button class="btn btn-link seguirButton" title="Seguir" >Seguir</button>
+                         <button type="button" class="btn btn-link seguirButton" title="Seguir" onclick="verificarCodigo();">Seguir</button>
                        </div>
-     </form>
                    <div class="footer">
                      <span class="centAlign footerText">vers&atilde;o 1.0</span>
                    </div>
@@ -31,5 +29,28 @@ include('inc/cabecalho.inc');
   function voltar(){
     window.location.href = "index.php";
   }
+
+  function verificarCodigo() {
+      var codigo1 = document.getElementById("codigo").value;
+      if(!(codigo1 === null || codigo1 === "")){
+      $.post("verifica_codigo.php",
+        {
+          codigo: codigo1,
+        },
+        function (result){
+          alert(result);
+            if(result === '0'){
+            window.location="venda_produtos.php";
+          }
+            if(result === '1'){
+              alert("Motorista não Cadastrado. Verifique o Código e Tente Novamente!")
+            }
+
+        }
+
+    );}else{
+      alert("Preencha os campos Corretamente!");
+    }
+    }
   </script>
   </html>

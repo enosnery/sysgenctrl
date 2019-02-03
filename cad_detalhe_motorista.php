@@ -4,7 +4,7 @@ if(session_status() !== PHP_SESSION_ACTIVE){
     session_start();
 }
 include("inc/conectar.inc");
-//include("/inc/verifica_sessao.inc");
+include("/inc/verifica_sessao.inc");
 $index = $_SESSION['prodIndex'];
 //query que seleciona o usuario e a senha do login informados
 $produtos = "SELECT idusuario, nome, email FROM usuario WHERE idusuario = $index;";
