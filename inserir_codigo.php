@@ -38,7 +38,6 @@ include('inc/cabecalho.inc');
           codigo: codigo1,
         },
         function (result){
-          alert(result);
             if(result === '0'){
             window.location="venda_produtos.php";
           }

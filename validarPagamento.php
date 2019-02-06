@@ -4,6 +4,7 @@ require __DIR__.'/vendor/autoload.php'; // caminho relacionado a SDK
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
+$charge_id = $_POST['chargeid'];
 $clientId = 'Client_Id_fcaded836d54be5a8597d1fb64a9d3c3be32dca9'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
 $clientSecret = 'Client_Secret_b6b437aa7bccb47df2cb43eacffb6cd2782c9606'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
 

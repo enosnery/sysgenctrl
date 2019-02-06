@@ -1,6 +1,6 @@
 <?php
 include('inc/cabecalho.inc');
-header("Access-Control-Allow-Origin: *");
+
 ?>
 <body>
          <div id="appBody">
@@ -12,17 +12,29 @@ header("Access-Control-Allow-Origin: *");
              <?php include('lista_produtos.php'); ?>
            </div>
            <div class="totalContainer">
-              <input type="text" id="valorTotal" class="centAlign" value=0.0 readonly />
+             <div class="wrapper centAlign">
+              <span>Total: R$ <input type="text" id="valorTotal" value=0.0 readonly /></span>
+            </div>
          </div>
          <div class="pagamentoContainer">
            <div class="centAlign pagarButton">
-                 <input type="button" class="btn btn-success pagarButton centAlign" value="Pagar" onclick="validarPagamento();" />
+                 <input type="button" class="btn btn-success pagarButton centAlign" value="Pagar" onclick="criarTransacao();" />
                </div>
          </div>
       </div>
   </body>
   <script type="text/javascript">
+  var s=document.createElement('script');s.type='text/javascript';
+var v=parseInt(Math.random()*1000000);
+s.src='https://sandbox.gerencianet.com.br/v1/cdn/a44177e8cdfe392334de0cf988b19987/'+v;
+s.async=false;s.id='a44177e8cdfe392334de0cf988b19987';
+if(!document.getElementById('a44177e8cdfe392334de0cf988b19987'))
+{document.getElementsByTagName('head')[0].appendChild(s);
+};
+$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};
+
 var arrayIds = [];
+var charge_id = null;
 
 function isNull(i){
   if(i == null){
@@ -30,6 +42,22 @@ function isNull(i){
   }else{
     return true;
   }
+}
+
+function criarTransacao(){
+  var total = document.getElementById('valorTotal');
+  $.post("criar_transacao.php",
+  {
+    total: total,
+    items: JSON.stringify(arrayIds)
+  },
+  function(result){
+    var transaction = JSON.parse(result);
+    charge_id = transaction.data.charge_id;
+    alert(transaction.data.charge_id);
+  }
+
+);
 }
 
 function validarPagamento(){
@@ -56,6 +84,7 @@ function validarPagamento(){
 });
   $.post("validarPagamento.php",
   {
+    chargeid: charge_id
   },
   function(response){
       alert(response);
@@ -67,8 +96,10 @@ function addItem(index){
   var total = document.getElementById("valorTotal");
   var itemValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
   var itemId = document.getElementById("product-id-"+index.toString()).value;
-  arrayIds.push(itemId);
+  var item = {item: itemId, value: itemValue};
+  arrayIds.push(item);
   total.value = parseFloat(parseFloat(total.value) + itemValue).toFixed(2);
+  console.log(arrayIds);
 }
 
 function removeItem(index){
@@ -76,20 +107,14 @@ function removeItem(index){
   var total = document.getElementById("valorTotal");
   var itemValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
   var itemId = document.getElementById("product-id-"+index.toString()).value;
+  arrayIds.splice(arrayIds.indexOf(itemId), 1);
   var temp = parseFloat(parseFloat(total.value) - itemValue).toFixed(2);
    total.value = (temp >= 0 )? temp : 0.0;
+   console.log(arrayIds);
 // }
 
 
 }
   </script>
-<script type='text/javascript'>
-var s=document.createElement('script');s.type='text/javascript';
-var v=parseInt(Math.random()*1000000);
-s.src='https://sandbox.gerencianet.com.br/v1/cdn/a44177e8cdfe392334de0cf988b19987/'+v;
-s.async=false;s.id='a44177e8cdfe392334de0cf988b19987';
-if(!document.getElementById('a44177e8cdfe392334de0cf988b19987'))
-{document.getElementsByTagName('head')[0].appendChild(s);
-};
-$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};</script>
+
   </html>
