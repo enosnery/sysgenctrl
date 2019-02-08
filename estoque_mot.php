@@ -10,16 +10,11 @@ include('inc/cabecalho.inc');
            <div class="list-group">
              <div class="menuHeader list-group-item list-group-item-action" >
                <span class="customIcon glyphicon glyphicon-menu-left" onclick="voltar();"></span>
-               <button type="button">Produtos</button>
+               <button type="button">Estoque</button>
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
-           <div class="list-group-item list-group-item-action">
-             <input id="pesquisa" type="text" placeholder="Pesquisar..." onkeyup="pesquisar();"/>
-             <span class="searchBarPlus glyphicon glyphicon-plus" onclick="addNewProd();"></span>
-                <span class="searchBarIcon glyphicon glyphicon-search" onclick="focusPesquisa();"></span>
-           </div>
            <div id="listaCadastro" class="listaCadastro">
-             <?php include('cad_lista_produtos.php')?>
+             <?php include('lista_estoque_mot.php')?>
            </div>
    </div>
 

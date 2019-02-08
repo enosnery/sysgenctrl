@@ -5,7 +5,7 @@ require __DIR__.'/vendor/autoload.php'; // caminho relacionado a SDK
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$data = json_decode(file_get_contents('php://input'), true);
+ $data = json_decode($_POST['items'], true);
 
 $clientId = 'Client_Id_fcaded836d54be5a8597d1fb64a9d3c3be32dca9'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
 $clientSecret = 'Client_Secret_b6b437aa7bccb47df2cb43eacffb6cd2782c9606'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
@@ -16,11 +16,13 @@ $options = [
   'sandbox' => true // altere conforme o ambiente (true = desenvolvimento e false = producao)
 ];
 
-$i = 0;
-foreach ($data['items'] as $key => $value) {
-  $item['name'] = $value['item'];
-  $item['value'] = $value['value'];
-  $items[$i++] = $item;
+$items = [];
+for ($i=0; $i < count($data) ; $i++) {
+  $value['name'] = $data[$i]['item'];
+  $value['value'] = intval($data[$i]['value']);
+  $items[] = $value;
+} {
+
 }
 // $item_1 = [
 //     'name' => 'Item 1', // nome do item, produto ou serviço
@@ -66,3 +68,4 @@ try {
 } catch (Exception $e) {
     print_r($e->getMessage());
 }
+?>

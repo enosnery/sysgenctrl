@@ -46,21 +46,23 @@ function isNull(i){
 
 function criarTransacao(){
   var total = document.getElementById('valorTotal');
-  $.post("criar_transacao.php",
+  var myjson =  JSON.stringify(arrayIds);
+  console.log(myjson);
+  if(arrayIds.length > 0){
+  $.post('criar_transacao.php',
   {
-    total: total,
-    items: JSON.stringify(arrayIds)
+    "items": myjson
   },
   function(result){
     var transaction = JSON.parse(result);
     charge_id = transaction.data.charge_id;
-    alert(transaction.data.charge_id);
-  }
-
-);
+    validarPagamento(charge_id);
+  });
+}
 }
 
-function validarPagamento(){
+function validarPagamento(chargeid){
+  var payment;
   $gn.ready(function(checkout) {
 
   var callback = function(error, response) {
@@ -73,18 +75,20 @@ function validarPagamento(){
     }
   };
 
-  checkout.getPaymentToken({
-    brand: 'visa', // bandeira do cartão
-    number: '4012001038443335', // número do cartão
-    cvv: '123', // código de segurança
-    expiration_month: '05', // mês de vencimento
-    expiration_year: '2018' // ano de vencimento
+  var payment = checkout.getPaymentToken({
+    brand: 'mastercard', // bandeira do cartão
+    number: '5401056120155722', // número do cartão
+    cvv: '630', // código de segurança
+    expiration_month: '11', // mês de vencimento
+    expiration_year: '2025' // ano de vencimento
   }, callback);
 
 });
+console.log(payment);
   $.post("validarPagamento.php",
   {
-    chargeid: charge_id
+    chargeid: charge_id,
+    token: payment
   },
   function(response){
       alert(response);
@@ -94,11 +98,12 @@ function validarPagamento(){
 function addItem(index){
 
   var total = document.getElementById("valorTotal");
-  var itemValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
+  var tmpValue = parseFloat(document.getElementById("product-value-"+index.toString()).value).toFixed(2);
+  var itemValue = tmpValue.toString().replace(".","");
   var itemId = document.getElementById("product-id-"+index.toString()).value;
   var item = {item: itemId, value: itemValue};
   arrayIds.push(item);
-  total.value = parseFloat(parseFloat(total.value) + itemValue).toFixed(2);
+  total.value = parseFloat(parseFloat(total.value) + tmpValue).toFixed(2);
   console.log(arrayIds);
 }
 

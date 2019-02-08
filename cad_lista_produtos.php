@@ -1,7 +1,10 @@
 <?php
-
+if(session_id() == '' || !isset($_SESSION)) {
+    // session isn't started
+    session_start();
+}
 include("inc/conectar.inc");
-include("/inc/verifica_sessao.inc");
+include("inc/verifica_sessao.inc");
 
 //query que seleciona o usuario e a senha do login informados
 $produtos = "SELECT id, descricao, picture_url FROM produtos ORDER BY id;";
@@ -40,14 +43,17 @@ echo "<tr>";
 	echo "<span class='nome'>$nome";
 	echo "</span>";
 	echo "</td>";
+
 	echo "<td id='cadProdButton'>";
 	echo "<a class='glyphicon glyphicon-pencil' onclick='goToDetail($id)'>";
 	echo "</a>";
 	echo "</td>";
+  if($_SESSION['is_adm']==='t'){
 	echo "<td id='cadProdButton'>";
 	echo "<a class='glyphicon glyphicon-trash' onclick='removeProd($id)'>";
 	echo "</a>";
 	echo "</td>";
+}
 	echo "</tr>";
 	echo "</table>";
 	echo "</div>";

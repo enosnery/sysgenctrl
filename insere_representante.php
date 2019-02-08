@@ -6,7 +6,7 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 }
 include("inc/conectar.inc");
 // include("envia_foto.php");
-include("/inc/verifica_sessao.inc");
+include("inc/verifica_sessao.inc");
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];
@@ -24,9 +24,9 @@ if ($senha !== null) {
 
 if ($num_linhas > 0)
 	{
-    echo "Representante cadastrado com sucesso!";}
-    else{
-    echo "Ocorreu um problema com a inclusão do Representante."
+    echo "Representante cadastrado com sucesso!";
+  }else{
+    echo "Ocorreu um problema com a inclusão do Representante.";
     }
 
 

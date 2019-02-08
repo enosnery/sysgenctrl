@@ -1,7 +1,7 @@
 <?php
 
 include("inc/conectar.inc");
-include("/inc/verifica_sessao.inc");
+include("inc/verifica_sessao.inc");
 
 //query que seleciona o usuario e a senha do login informados
 $produtos = "SELECT idusuario, nome, email  FROM usuario WHERE is_motorista = true ORDER BY idusuario;";
@@ -42,10 +42,12 @@ echo "<tr>";
 	echo "<a class='cadRepIcon glyphicon glyphicon-pencil' onclick='goToDetail($id)'>";
 	echo "</a>";
 	echo "</td>";
+	if($_SESSION['is_adm']==='t'){
 	echo "<td id='cadProdButton'>";
 	echo "<a class='cadRepIcon glyphicon glyphicon-trash' onclick='removeDriver($id)'>";
 	echo "</a>";
 	echo "</td>";
+}
 	echo "</tr>";
 	echo "</table>";
 	echo "</div>";

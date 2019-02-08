@@ -4,10 +4,10 @@ if(session_status() !== PHP_SESSION_ACTIVE){
     session_start();
 }
 include("inc/conectar.inc");
-include("/inc/verifica_sessao.inc");
+include("inc/verifica_sessao.inc");
 $index = $_SESSION['prodIndex'];
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT idusuario, nome, email FROM usuario WHERE idusuario = $index;";
+$produtos = "SELECT idusuario, nome, email, codigo_motorista FROM usuario WHERE idusuario = $index;";
 
 $resultado = pg_query($conexao, $produtos);
 
@@ -29,11 +29,14 @@ $i = 0 ;
   $email = $row['email'];
 	$id = $row['idusuario'];
 	$nome = $row['nome'];
+  $codigo = $row['codigo_motorista'];
 	echo "<input id='index' name='index' type='hidden' value='$id'>";
   echo "<label for='nome'>Nome</label>";
 	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' />";
-  echo "<label for='email'>Valor</label>";
+  echo "<label for='email'>Email</label>";
 	echo "<input id='email' name='email' class='prodDetailInput centAlign' value='$email' />";
+  echo "<label for='senha'>Código</label>";
+  echo "<input id='codigo' name='codigo' class='prodDetailInput centAlign' value='$codigo' />";
   echo "<label for='senha'>Senha</label>";
 	echo "<input id='btn-senha' name='senha' class='prodDetailInput centAlign' value='' disabled>";
   echo "<a type='button' class='btn btn-primary' onclick='liberaSenha();'> Alterar Senha</a> ";

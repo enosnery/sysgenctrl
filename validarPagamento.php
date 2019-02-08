@@ -5,6 +5,7 @@ use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
 $charge_id = $_POST['chargeid'];
+$paymentToken = $_POST['token'];
 $clientId = 'Client_Id_fcaded836d54be5a8597d1fb64a9d3c3be32dca9'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
 $clientSecret = 'Client_Secret_b6b437aa7bccb47df2cb43eacffb6cd2782c9606'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
 
@@ -19,7 +20,7 @@ $params = [
   'id' => $charge_id
 ];
 
-$paymentToken = '6426f3abd8688639c6772963669bbb8e0eb3c319'; // payment_token obtido na 1ª etapa (através do Javascript único por conta Gerencianet)
+// $paymentToken = '6426f3abd8688639c6772963669bbb8e0eb3c319'; // payment_token obtido na 1ª etapa (através do Javascript único por conta Gerencianet)
 
 $customer = [
   'name' => 'Gorbadoc Oldbuck', // nome do cliente
@@ -45,12 +46,13 @@ $creditCard = [
   'customer' => $customer
 ];
 
-$body = [
-  'payment' => $payment
-];
 
 $payment = [
   'credit_card' => $creditCard // forma de pagamento (credit_card = cartão)
+];
+
+$body = [
+  'payment' => $payment
 ];
 
 try {

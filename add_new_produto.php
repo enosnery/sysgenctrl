@@ -19,8 +19,6 @@ include('inc/cabecalho.inc');
            	<input id='nome' name='nome' class='prodDetailInput centAlign'/>
              <label for='valor'>Valor</label>
            	<input id='valor' name='valor' class='prodDetailInput centAlign' />
-             <label for='codigo'>Código</label>
-           	<input id='codigo' name='codigo' class='prodDetailInput centAlign'/>
                     </form>
              <div class="detalheProdutoButtons">
                <button type='button' id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>
@@ -39,7 +37,6 @@ include('inc/cabecalho.inc');
   function confirmaInclude() {
     var nome = document.getElementById("nome").value;
     var valor = document.getElementById("valor").value;
-    var codigo = document.getElementById("codigo").value;
     var foto = document.getElementById("foto");
 
 
@@ -50,21 +47,11 @@ include('inc/cabecalho.inc');
 
     $.post($(this).attr("action"), formData, function(data) {
         alert(data);
-        window.location="cadproduto.php";
     });
 });
-    //   // document.getElementById("novoMetodo").submit;
-    // $.post("insere_produto.php",
-    //  {nome: nome,
-    //   valor: valor,
-    //   codigo: codigo,
-    //   foto: foto,
-    // }, function (result){
-    //   alert(result);
-    //   window.location="cadproduto.php";
-    // });
-    };
-  }
+}
+}
+
   function voltar() {
     window.location = "cadproduto.php";
   }

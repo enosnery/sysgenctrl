@@ -1,7 +1,7 @@
 <?php
 
 include("inc/conectar.inc");
-include("/inc/verifica_sessao.inc");
+include("inc/verifica_sessao.inc");
 
 //query que seleciona o usuario e a senha do login informados
 $produtos = "SELECT id, descricao, picture_url FROM produtos ORDER BY id;";
