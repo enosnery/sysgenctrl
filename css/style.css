@@ -140,6 +140,9 @@ table#cadprodTable{
 table#cadListItem{
   width: 100vw;
 }
+table#estoqueListItem{
+  width: 100vw;
+}
 .productsImage{
   max-width: 55px;
   max-height: 55px;
@@ -320,4 +323,49 @@ table#cadprodTable td#cadProdButton{
 vertical-align: middle;
 text-align: left;
 width: 15%;
+}
+
+
+
+table#estoqueDesc{
+  padding: 10px;
+  margin-left: 10px;
+}
+table#estoqueTable tr{
+  width: 90vw;
+  border-bottom: 1px solid gainsboro;
+  padding: 10px;
+  height: 55px;
+}
+table#estoqueTable th{
+  width: 90vw;
+  border-bottom: 1px solid gainsboro;
+  padding: 10px;
+  height: 55px;
+}
+table#estoqueListItem td.estoquecodDesc{
+vertical-align: middle;
+text-align: left;
+width: 20%;
+min-width: 83px;
+}
+table#estoqueListItem td.estoqueqtdDesc{
+vertical-align: middle;
+text-align: left;
+width: 20%;
+max-width: 93px;
+}
+table#estoqueListItem td.estoquedescDesc{
+vertical-align: middle;
+text-align: left;
+width: 25%;
+min-width: 100px;
+max-width: 120px;
+}
+
+table#estoqueTable td#estoque{
+vertical-align: middle;
+text-align: left;
+width: 10%;
+right:10;
 }

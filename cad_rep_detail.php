@@ -11,23 +11,39 @@ include('inc/cabecalho.inc');
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
           </div>
-          <form id="alteraProd" action="altera_rep.php" method="post">
            <div class="detalheProdutoContainer">
              <?php include('cad_detalhe_rep.php')?>
              <div class="detalheProdutoButtons">
                <button type='button' id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>
-               <button type='submit' class="btn btn-link seguirButton" title="Alterar" >Alterar</button>
+               <button type='submit' class="btn btn-link seguirButton" title="Alterar" onclick="alterarUsuario();">Alterar</button>
              </div>
            </div>
-        </form>
-
-
      </div>
 
   </body>
   <script type="text/javascript">
   function liberaSenha(){
-    $("#senha").toggle();
+    $("#btn-senha").removeAttr("disabled");
+    $("#btn-senha").css("background-color","white");
+    $("#btn-senha").css("border-bottom","2px solid gainsboro");
+  }
+  function alterarUsuario() {
+    var index = document.getElementById("index").value;
+    var nome = document.getElementById("nome").value;
+    var email = document.getElementById("email").value;
+    var senha = document.getElementById("btn-senha").value;
+    if(confirm("Deseja realmente alterar esse motorista?")){
+    $.post("altera_rep.php",
+    {
+      "index": index,
+      "nome": nome,
+      "email": email,
+      "senha": senha
+    }, function (result){
+      alert(result);
+      window.location="cadrepresentante.php";
+    });
+    };
   }
   function voltar() {
     window.location = "cadrepresentante.php";

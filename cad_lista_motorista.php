@@ -38,11 +38,16 @@ echo "<tr>";
 	echo "<input id='product-id-$i' type='hidden' value='$id'>";
 	echo "<input id='product-value-$i' type='hidden' value='$nome'>";
 	echo "</td>";
+	if($_SESSION['is_rep']==='t'){
+		echo "<td id='cadProdButton'>";
+		echo "<a class='cadRepIcon fas fa-angle-right' onclick='seeDetail($id)'>";
+		echo "</a>";
+	}
+	if($_SESSION['is_adm']==='t'){
 	echo "<td id='cadProdButton'>";
 	echo "<a class='cadRepIcon glyphicon glyphicon-pencil' onclick='goToDetail($id)'>";
 	echo "</a>";
 	echo "</td>";
-	if($_SESSION['is_adm']==='t'){
 	echo "<td id='cadProdButton'>";
 	echo "<a class='cadRepIcon glyphicon glyphicon-trash' onclick='removeDriver($id)'>";
 	echo "</a>";

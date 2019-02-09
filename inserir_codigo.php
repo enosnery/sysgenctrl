@@ -20,9 +20,6 @@ include('inc/cabecalho.inc');
                          <button id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>
                          <button type="button" class="btn btn-link seguirButton" title="Seguir" onclick="verificarCodigo();">Seguir</button>
                        </div>
-                   <div class="footer">
-                     <span class="centAlign footerText">vers&atilde;o 1.0</span>
-                   </div>
            </div>
   </body>
   <script type="text/javascript">

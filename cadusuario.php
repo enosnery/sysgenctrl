@@ -55,9 +55,9 @@ include('inc/cabecalho.inc');
         a = li[i];
         txtValue = a.outerText || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].parentElement.parentElement.style.display = "";
+            li[i].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.display = "";
         } else {
-            li[i].parentElement.parentElement.style.display = "none";
+            li[i].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.display = "none";
         }
     }
 }

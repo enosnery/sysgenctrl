@@ -34,20 +34,20 @@ include('inc/cabecalho.inc');
   </body>
   <script type="text/javascript">
   function confirmaInclude() {
-    if(!(login1 === null || login1 === "" || senha1 === null || senha1 === "")){
+
     var nome = document.getElementById("nome").value;
     var senha = document.getElementById("senha").value;
     var login = document.getElementById("login").value;
     var email = document.getElementById("email").value;
-
-    if(confirm("Confirma a inclusão do usuário " + nome + "?")){
+    if(!(login === null || login === "" || senha === null || senha === "" || nome === null || nome === "" || email === null || email === ""  )){
+    if(confirm("Deseja finalizar o cadastro?")){
     $.post("insere_usuario.php",
      {nome: nome,
       senha: senha,
       login: login,
       email: email
     }, function (result){
-      alert("Você se cadastrou com sucesso!");
+      alert(result);
       window.location="index.php";
     });
     };

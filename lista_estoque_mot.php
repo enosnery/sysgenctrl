@@ -6,12 +6,14 @@ include("inc/verifica_sessao.inc");
 $idmotorista = $_SESSION['id'];
 //query que seleciona o usuario e a senha do login informados
 $produtos = "SELECT p.id, p.descricao, e.quantidade_atual FROM produtos p inner join estoque_motorista e on e.id_produto = p.id where e.idmotorista = $idmotorista ORDER BY id;";
-
+$usuario = "SELECT idusuario, nome FROM usuario where idusuario = $idmotorista;";
 $resultado = pg_query($conexao, $produtos);
+$resultusu = pg_query($conexao, $usuario);
 
 //verifica se a query retornou algum resultado
 //print odbc_errormsg($conexao);
 $num_linhas = pg_num_rows($resultado);
+$num_linhasusu = pg_num_rows($resultusu);
 
 //echo $num_linhas." - Linhas</br>";
 //echo $res." - Resultado</br>"
@@ -19,24 +21,31 @@ $num_linhas = pg_num_rows($resultado);
 //$login = $resultado['LOGIN'];
 
 //se retonou algum resultado, executar o registro do usuario
-if ($num_linhas > 0)
+if ($num_linhas > 0 && $num_linhasusu > 0)
 	{
 $i = 0 ;
-echo "<table id=cadRepTable>";
+while($row = pg_fetch_assoc($resultusu)){
+	$idusu = $row['idusuario'];
+	$nome = $row['nome'];
+echo  "<div class='menuHeader list-group-item list-group-item-action' style='min-height:2em;border-bottom:1px solid black'>";
+echo  "<span style='font-size:15px;text-align:left;float:right'>Código: $idusu</span>" ;
+echo  "<span style='font-size:15px;text-align:right;float:left'>Motorista: $nome</span>" ;
+echo  "</div>";
+echo "<table id=estoqueTable>";
 echo "<tr>";
 echo "<td style='width:90vw'> ";
-echo "<table id='cadListItem'>";
+echo "<table id='estoqueListItem'>";
 echo "<tr>";
-echo "<td id='cadRepDesc' style='width:105px;'>";
+echo "<td id='estoquecodDesc' class='estoquecodDesc'>";
 echo "<span style='margin-left:20px;'>Código";
 echo "</span>";
 echo "</td>";
-echo "<td id='cadRepDesc'>";
-echo "<span style='margin-left:20px;'>Descrição";
+echo "<td id='estoquedescDesc' class='estoquedescDesc'>";
+echo "<span>Descrição";
 echo "</span>";
 echo "</td>";
-echo "<td id='cadRepDesc'>";
-echo "<span style='margin-left:20px;'>Quantidade";
+echo "<td id='estoqueqtdDesc' class='estoqueqteDesc'>";
+echo "<span>Quantidade";
 echo "</span>";
 echo "</td>";
 echo "</tr>";
@@ -48,23 +57,23 @@ echo "<tr>";
 		$i++;
 
 	$id = $row['id'];
-	$nome = $row['descricao'];
+	$desc = $row['descricao'];
 	$qtde = $row['quantidade_atual'];
 
 
 	echo "<td style='width:90vw'> ";
-	echo "<table id='cadListItem'>";
+	echo "<table id='estoqueListItem'>";
 	echo "<tr>";
-  echo "<td id='cadRepDesc' style='width:105px;'>";
+  echo "<td id='estoquecodDesc' class='estoquecodDesc'>";
 	echo "<span style='margin-left:20px;'>$id";
 	echo "</span>";
 	echo "</td>";
-	echo "<td id='cadRepDesc'>";
-	echo "<span style='margin-left:20px;'>$nome";
+	echo "<td id='estoquedescDesc' class='estoquedescDesc'>";
+	echo "<span>$desc";
 	echo "</span>";
 	echo "</td>";
-	echo "<td id='cadRepDesc'>";
-	echo "<span style='margin-left:20px;'>$qtde";
+	echo "<td id='estoqueqteDesc' class='estoqueqteDesc' >";
+	echo "<span>$qtde";
 	echo "</span>";
 	echo "</td>";
 	echo "</tr>";
@@ -74,6 +83,6 @@ echo "<tr>";
 	echo "<tr>";
 }
 }
-
+}
 
 ?>

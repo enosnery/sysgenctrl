@@ -3,7 +3,8 @@ if(session_id() == '' || !isset($_SESSION)) {
     // session isn't started
     session_start();
 }
-include('inc/cabecalho.inc');
+include ('inc/cabecalho.inc');
+include ('inc/verifica_sessao.inc');
 ?>
 <body>
          <div id="appBody">
@@ -29,21 +30,9 @@ include('inc/cabecalho.inc');
   function focusPesquisa(){
     $("#pesquisa").focus();
   }
-  function goToDetail(index) {
-    $.post("redirect.php", {index: index}, function (result){ window.location="cad_produto_detail.php";});
+  function transfer(index, qtde) {
+       window.location="transfer_rep.php?index="+index+"&qtde="+qtde;
   }
-  function removeProd(index) {
-    if(confirm("Deseja realmente remover esse produto?")){
-    $.post("exclude_prod.php", {index: index}, function (result){
-      alert(result);
-      window.location="cadproduto.php";
-    });
-    };
-  }
-  function addNewProd(){
-    window.location="add_new_produto.php";
-  }
-
   function pesquisar() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("pesquisa");

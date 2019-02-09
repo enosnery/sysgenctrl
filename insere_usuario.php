@@ -1,16 +1,9 @@
 <?php
-
-if(session_status() !== PHP_SESSION_ACTIVE){
-    //session has not started
-    session_start();
-}
 include("inc/conectar.inc");
-// include("envia_foto.php");
-include("inc/verifica_sessao.inc");
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];
-$login = $_POST['login'];
+$login = strtolower($_POST['login']);
 $senha = isset($_POST['senha']) ? $_POST['senha'] : null ;
 
 if ($senha !== null) {

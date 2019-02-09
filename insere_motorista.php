@@ -21,7 +21,7 @@ function randomString($length = 6) {
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];
-$login = $_POST['login'];
+$login = strtolower($_POST['login']);
 $codigo = randomString();
 $senha = isset($_POST['senha']) ? $_POST['senha'] : null ;
 

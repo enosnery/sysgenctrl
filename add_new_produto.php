@@ -25,7 +25,7 @@ include('inc/cabecalho.inc');
                <button type='submit' class="btn btn-link seguirButton" title="Inserir" onclick="confirmaInclude();">Inserir</button>
              </div>
            </div>
-
+         </form>
 
      </div>
 
@@ -36,10 +36,6 @@ include('inc/cabecalho.inc');
   });
   function confirmaInclude() {
     var nome = document.getElementById("nome").value;
-    var valor = document.getElementById("valor").value;
-    var foto = document.getElementById("foto");
-
-
     if(confirm("Confirma a inclusão do produto " + nome + "?")){
       $("#novoMetodo").submit(function(e) {
     // e.preventDefault();
@@ -47,6 +43,7 @@ include('inc/cabecalho.inc');
 
     $.post($(this).attr("action"), formData, function(data) {
         alert(data);
+        window.location = "cadproduto.php";
     });
 });
 }

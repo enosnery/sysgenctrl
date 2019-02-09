@@ -43,16 +43,22 @@ echo "<tr>";
 	echo "<span class='nome'>$nome";
 	echo "</span>";
 	echo "</td>";
-
+  if($_SESSION['is_mot']==='t'||$_SESSION['is_rep']==='t'){
+    echo "<td id='cadProdButton'>";
+  	echo "<a class='fas fa-angle-right' style='font-size:30px' onclick='seeDetail($id)'>";
+  	echo "</a>";
+  	echo "</td>";
+  }else{
+  if($_SESSION['is_adm']==='t'){
 	echo "<td id='cadProdButton'>";
 	echo "<a class='glyphicon glyphicon-pencil' onclick='goToDetail($id)'>";
 	echo "</a>";
 	echo "</td>";
-  if($_SESSION['is_adm']==='t'){
 	echo "<td id='cadProdButton'>";
 	echo "<a class='glyphicon glyphicon-trash' onclick='removeProd($id)'>";
 	echo "</a>";
 	echo "</td>";
+}
 }
 	echo "</tr>";
 	echo "</table>";

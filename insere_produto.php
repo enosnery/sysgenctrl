@@ -33,8 +33,10 @@ $bucket -> upload(fopen($temp,'r'),[
 
  if ($num_linhas > 0)
  	{
-    header("cadproduto.php");}
+    echo "entrou 1";
+    header("Location: cadproduto.php");}
      else{
+       echo "entrou 2";
        header("Refresh:0");
      }
 
@@ -49,8 +51,10 @@ $bucket -> upload(fopen($temp,'r'),[
 
   if ($num_linhas > 0)
   	{
-      header("cadproduto.php");}
+      echo "entrou 3";
+      header("Location: cadproduto.php");}
       else{
+        echo "entrou 4";
         header("Refresh:0");
       }
 

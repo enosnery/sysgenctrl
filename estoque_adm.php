@@ -11,11 +11,6 @@ include("inc/verifica_sessao.inc");
                <button type="button">Estoque</button>
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
-           <div class="list-group-item list-group-item-action">
-             <input id="pesquisa" type="text" placeholder="Pesquisar..." onkeyup="pesquisar();"/>
-             <span class="searchBarPlus glyphicon glyphicon-plus" onclick="addNewProd();"></span>
-                <span class="searchBarIcon glyphicon glyphicon-search" onclick="focusPesquisa();"></span>
-           </div>
            <div id="listaCadastro" class="listaCadastro">
              <?php include('lista_estoque_adm.php')?>
            </div>
@@ -27,24 +22,17 @@ include("inc/verifica_sessao.inc");
   </body>
   <script type="text/javascript">
   function voltar() {
-    window.location = "menu_admin.php";
+    window.location = "estoque.php";
   }
   function focusPesquisa(){
     $("#pesquisa").focus();
   }
-  function goToDetail(index) {
-    $.post("redirect.php", {index: index}, function (result){ window.location="cad_produto_detail.php";});
+  function transfer(index, qtde) {
+       window.location="transfer_adm.php?index="+index+"&qtde="+qtde;
   }
-  function removeProd(index) {
-    if(confirm("Deseja realmente remover esse produto?")){
-    $.post("exclude_prod.php", {index: index}, function (result){
-      alert(result);
-      window.location="cadproduto.php";
-    });
-    };
-  }
-  function addNewProd(){
-    window.location="add_new_produto.php";
+
+  function addToStock(){
+    window.location="add_to_stock.php";
   }
 
   function pesquisar() {

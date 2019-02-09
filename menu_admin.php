@@ -12,7 +12,6 @@ include("inc/verifica_sessao.inc");
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
              <?php include("lista_menu_admin.php") ?>
-          
   </body>
   <script type="text/javascript">
   function voltar() {

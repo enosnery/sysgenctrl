@@ -37,6 +37,9 @@ include('inc/cabecalho.inc');
   function goToDetail(index) {
     $.post("redirect.php", {index: index}, function (result){ window.location="cad_produto_detail.php";});
   }
+  function seeDetail(index) {
+    $.post("redirect.php", {index: index}, function (result){ window.location="consulta_cad_produto_detail.php";});
+  }
   function removeProd(index) {
     if(confirm("Deseja realmente remover esse produto?")){
     $.post("exclude_prod.php", {index: index}, function (result){

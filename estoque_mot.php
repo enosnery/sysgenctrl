@@ -4,6 +4,7 @@ if(session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
 include('inc/cabecalho.inc');
+include ('inc/verifica_sessao.inc');
 ?>
 <body>
          <div id="appBody">
