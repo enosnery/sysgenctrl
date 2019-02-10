@@ -28,7 +28,7 @@ include("inc/verifica_sessao.inc");
   $(document).ready(function(){
       const url = new URL(window.location.href);
       idproduto = url.searchParams.get("index");
-      quantidade = url.searchParams.get("qtde");
+      quantidade = parseInt(url.searchParams.get("qtde"));
   });
 
   function showTransferRep(){
@@ -56,7 +56,7 @@ include("inc/verifica_sessao.inc");
     var cod = user.options[user.selectedIndex].value;
     var qtde = document.getElementById('qtderep').value;
     console.log(quantidade);
-    if(qtde !== null){
+    if(qtde !== null || qtde === ''){
     if(qtde <= quantidade){
     $.post("transfer_rep_query.php",
     {
@@ -83,7 +83,7 @@ function transferMoto() {
   console.log(quantidade);
   console.log(qtde);
   console.log(qtde <= quantidade);
-  if(qtde !== null){
+  if(qtde !== null || qtde !== ''){
   if(qtde <= quantidade){
   $.post("transfer_moto_rep_query.php",
   {

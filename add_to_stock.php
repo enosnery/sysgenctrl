@@ -26,7 +26,7 @@ include("inc/verifica_sessao.inc");
   $(document).ready(function(){
       const url = new URL(window.location.href);
       index = url.searchParams.get("index");
-      quantidade = url.searchParams.get("qtde");
+      quantidade = parseInt(url.searchParams.get("qtde"));
   });
 
   function voltar() {
@@ -38,7 +38,7 @@ include("inc/verifica_sessao.inc");
     var cod = prod.options[prod.selectedIndex].value;
     var qtde = document.getElementById('addprod').value;
 
-    if(qtde !== null){
+    if(qtde !== null || qtde === ''){
     $.post("add_stock_query.php",
     {
       "idproduto": cod,
@@ -58,7 +58,7 @@ function transferMoto() {
 var cod = document.getElementById('idusu').value;
   var qtde = document.getElementById('qtdemoto').value;
   console.log(quantidade);
-  if(qtde !== null){
+  if(qtde !== null || qtde === ''){
   if(qtde <= quantidade){
   $.post("transfer_adm_rep_query.php",
   {

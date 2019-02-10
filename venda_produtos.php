@@ -18,7 +18,7 @@ include('inc/cabecalho.inc');
          </div>
          <div class="pagamentoContainer">
            <div class="centAlign pagarButton">
-                 <input type="button" class="btn btn-success pagarButton centAlign" value="Pagar" onclick="criarTransacao();" />
+                 <input type="button" class="btn btn-success pagarButton centAlign" value="Pagar" onclick="pagar();" />
                </div>
          </div>
       </div>
@@ -64,6 +64,17 @@ function criarTransacao(){
 }
 }
 
+function pagar(){
+  var total = document.getElementById('valorTotal').value;
+  var totalitens = arrayIds.length;
+
+  if(confirm("Valor Total: R$ " + total + "\nTotal de Itens: " + totalitens + "\nDeseja finalizar a compra?" )){
+    alert('Compra Finalizada!');
+
+    setTimeout(function(){window.location="index.php"},3000);
+  }
+}
+
 function validarPagamento(chargeid){
   var payment;
   $gn.ready(function(checkout) {
@@ -98,21 +109,20 @@ console.log(payment);
     });
 }
 
-function addItem(index, stock){
-  occurrences = arrayIds.filter(v => v === index).length;
-  console.log(stock);
-  console.log(occurrences);
-
-  if(occurrences <= stock){
+function addItem(index, idproduto, stock){
+  var count = 0;
+for(var i = 0; i < arrayIds.length; ++i){
+    if(arrayIds[i]['item'] == idproduto)
+        count++;
+}
+  if(count < stock){
   var total = document.getElementById("valorTotal");
   var tmpValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
   var itemValue = tmpValue.toString().replace(".","");
   var itemId = document.getElementById("product-id-"+index.toString()).value;
-  console.log
   total.value = parseFloat(parseFloat(total.value) + tmpValue).toFixed(2);
   var item = {item: itemId, value: itemValue};
   arrayIds.push(item);
-  console.log(arrayIds);
 }else{
   return;
 }

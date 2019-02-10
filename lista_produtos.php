@@ -33,7 +33,7 @@ $i = 0 ;
 	echo "<table id='tableItem'>";
 	echo "<tr>";
 	echo "<td style='width:10%'>";
-  echo "<span class='centAlign iconeplus glyphicon glyphicon-plus-sign' onclick='addItem($i, $amount)'>";
+  echo "<span class='centAlign iconeplus glyphicon glyphicon-plus-sign' onclick='addItem($i, $id, $amount)'>";
 	echo "</span>";
 	echo "</td>";
 	echo "<td>";

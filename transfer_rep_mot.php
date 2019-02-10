@@ -29,7 +29,7 @@ include("inc/verifica_sessao.inc");
   $(document).ready(function(){
       const url = new URL(window.location.href);
       index = url.searchParams.get("index");
-      quantidade = url.searchParams.get("qtde");
+      quantidade = parseInt(url.searchParams.get("qtde"));
   });
 
   function voltar() {
@@ -40,7 +40,7 @@ include("inc/verifica_sessao.inc");
     var cod = document.getElementById('idusu').value;
     var qtde = document.getElementById('qtderep').value;
     console.log(quantidade);
-    if(qtde !== null){
+    if(qtde !== null || qtde === ''){
     if(qtde < quantidade){
     $.post("transfer_adm_moto_query.php",
     {
@@ -64,7 +64,7 @@ function transferMoto() {
   var cod = document.getElementById('idusu').value;
   var qtde = document.getElementById('qtdemoto').value;
   console.log(quantidade);
-  if(qtde !== null){
+  if(qtde !== null || qtde === ''){
   if(qtde <= quantidade){
   $.post("transfer_rep_moto_query.php",
   {
