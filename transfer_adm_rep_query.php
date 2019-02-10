@@ -23,9 +23,9 @@ if($isestoque > 0){
 
 if ($num_linhas > 0)
 	{
-    $update1 = "UPDATE estoque_representante SET quantidade_atual = quantidade_atual - $1  WHERE idrepresentante = $2;";
+    $update1 = "UPDATE estoque_representante SET quantidade_atual = quantidade_atual - $1  WHERE idrepresentante = $2 AND id_produto = $3 ;";
     $resultado1 = pg_prepare($conexao, "query_insert_user2", $update1);
-    $resultado1 = pg_execute($conexao, "query_insert_user2", array($quantidade, $idrep));
+    $resultado1 = pg_execute($conexao, "query_insert_user2", array($quantidade, $idrep, $idproduto));
     $num_linhas1 = pg_affected_rows($resultado1);
     if($num_linhas1 > 0){
     echo "Transfência feita com sucesso!";
@@ -33,9 +33,9 @@ if ($num_linhas > 0)
     $update1 = "UPDATE estoque_adm SET quantidade_atual = quantidade_atual - $1  WHERE idadmin = $2;";
     $resultado1 = pg_prepare($conexao, "query_insert_user3", $update);
     $resultado1 = pg_execute($conexao, "query_insert_user3", array($quantidade, $idadmin));
-    $update4 = "UPDATE estoque_representante SET quantidade_atual = quantidade_atual + $1  WHERE idrepresentante = $2;";
+    $update4 = "UPDATE estoque_representante SET quantidade_atual = quantidade_atual + $1  WHERE idrepresentante = $2 AND id_produto = $3 ;";
     $resultado4 = pg_prepare($conexao, "query_insert_user2", $update4);
-    $resultado4 = pg_execute($conexao, "query_insert_user2", array($quantidade, $idrep));
+    $resultado4 = pg_execute($conexao, "query_insert_user2", array($quantidade, $idrep, $idproduto));
     $num_linhas4 = pg_affected_rows($resultado4);
     echo "Ocorreu um problema na Transferência!";
   }

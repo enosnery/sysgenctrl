@@ -16,7 +16,7 @@ include('inc/cabecalho.inc');
              <label for='foto'>Imagem</label>
             <input id='foto' name='foto' class='form-control-file' style='margin-bottom:20px;' type='file' value='$nome'>
              <label for='nome'>Nome</label>
-           	<input id='nome' name='nome' class='prodDetailInput centAlign'/>
+           	<input id='nome' name='nome' class='prodDetailInput centAlign' maxlength="40"/>
              <label for='valor'>Valor</label>
            	<input id='valor' name='valor' class='prodDetailInput centAlign' />
                     </form>

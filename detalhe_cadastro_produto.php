@@ -34,11 +34,11 @@ $i = 0 ;
   echo "<img class='prodDetailImg img-responsive' src='$imagem' />";
 	echo "</div>";
 	echo "<input id='product-value-$i' class='form-control-file' style='margin-bottom:20px;' type='file' value='$nome'>";
-	echo "<input id='index' name='index' type='hidden' value='$id'>";
+	echo "<input id='index' name='index' type='hidden' value='$id' maxlength='40'>";
   echo "<label for='nome'>Nome</label>";
-	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' />";
+	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' maxlength='40'/>";
   echo "<label for='valor'>Valor</label>";
-	echo "<input id='valor' name='valor' class='prodDetailInput centAlign' value='$valor' />";
+	echo "<input id='valor' name='valor' class='prodDetailInput centAlign' value='$valor' maxlength='40'/>";
 }
 }
 

@@ -41,7 +41,7 @@ include("inc/verifica_sessao.inc");
     var qtde = document.getElementById('qtderep').value;
     console.log(quantidade);
     if(qtde !== null){
-    if(qtde >= quantidade){
+    if(qtde <= quantidade){
     $.post("transfer_adm_moto_query.php",
     {
       "idproduto": index,

@@ -5,9 +5,15 @@ $nome = $_POST['nome'];
 $email = $_POST['email'];
 $login = strtolower($_POST['login']);
 $senha = isset($_POST['senha']) ? $_POST['senha'] : null ;
+$isadmin = $_POST['isadmin'];
 
-if ($senha !== null) {
+if ($senha !== null && $isadmin === 'false') {
   $produtos = "INSERT INTO usuario (nome, email, senha, login, is_motorista) VALUES  ($1, $2, $3, $4, false);";
+  $resultado = pg_prepare($conexao, "query_insert_user", $produtos);
+  $resultado = pg_execute($conexao, "query_insert_user", array($nome, $email, $senha, $login));
+  $num_linhas = pg_affected_rows($resultado);
+}else{
+  $produtos = "INSERT INTO usuario (nome, email, senha, login, is_motorista, is_usuario_adm) VALUES  ($1, $2, $3, $4, false, true);";
   $resultado = pg_prepare($conexao, "query_insert_user", $produtos);
   $resultado = pg_execute($conexao, "query_insert_user", array($nome, $email, $senha, $login));
   $num_linhas = pg_affected_rows($resultado);

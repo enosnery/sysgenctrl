@@ -14,13 +14,13 @@ include('inc/cabecalho.inc');
 
            <div class="detalheProdutoContainer">
              <label for='nome'>Nome</label>
-           	<input id='nome' name='nome' class='prodDetailInput centAlign'/>
+           	<input id='nome' name='nome' class='prodDetailInput centAlign' maxlength="40"/>
              <label for='email'>Email</label>
-           	 <input id='email' name='email' class='prodDetailInput centAlign' />
+           	 <input id='email' name='email' class='prodDetailInput centAlign' maxlength="50"/>
               <label for='login'>Login</label>
-              <input id='login' name='login' class='prodDetailInput centAlign' />
+              <input id='login' name='login' class='prodDetailInput centAlign' maxlength="20"/>
                 <label for='senha'>Senha</label>
-          	     <input type="password" id="senha" name='senha' class='prodDetailInput centAlign'>
+          	     <input type="password" id="senha" name='senha' class='prodDetailInput centAlign' maxlength="20">
                   </input>
              <div class="detalheProdutoButtons">
                <button type='button' id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>

@@ -14,14 +14,15 @@ include('inc/cabecalho.inc');
 
            <div class="detalheProdutoContainer">
              <label for='nome'>Nome</label>
-           	<input id='nome' name='nome' class='prodDetailInput centAlign'/>
+           	<input id='nome' name='nome' class='prodDetailInput centAlign' maxlength="40"/>
              <label for='email'>Email</label>
-           	 <input id='email' name='email' class='prodDetailInput centAlign' />
+           	 <input id='email' name='email' class='prodDetailInput centAlign' maxlength="40"/>
               <label for='login'>Login</label>
-              <input id='login' name='login' class='prodDetailInput centAlign' />
+              <input id='login' name='login' class='prodDetailInput centAlign' maxlength="20"/>
                 <label for='senha'>Senha</label>
-          	     <input id="senha" type="password" name='senha' class='prodDetailInput centAlign'>
+          	     <input id="senha" type="password" name='senha' class='prodDetailInput centAlign' maxlength="20">
                   </input>
+                <input type='checkbox' id='isadmin' name='isadmin'>É Administrador?</input>
              <div class="detalheProdutoButtons">
                <button type='button' id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>
                <button type='button' class="btn btn-link seguirButton" title="Inserir" onclick="confirmaInclude();">Inserir</button>
@@ -39,13 +40,15 @@ include('inc/cabecalho.inc');
     var senha = document.getElementById("senha").value;
     var login = document.getElementById("login").value;
     var email = document.getElementById("email").value;
+    var isadmin = document.getElementById('isadmin').checked;
 
     if(confirm("Confirma a inclusão do usuário " + nome + "?")){
     $.post("insere_usuario.php",
      {nome: nome,
       senha: senha,
       login: login,
-      email: email
+      email: email,
+      isadmin: isadmin
     }, function (result){
       alert(result);
       window.location="cadusuario.php";

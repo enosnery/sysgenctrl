@@ -17,6 +17,10 @@ $bucket = $storage->bucket('cloudwebbucket');
 $files = $_FILES["foto"]["name"];
 $temp = $_FILES["foto"]["tmp_name"];
 $ext = pathinfo($files, PATHINFO_EXTENSION);
+if($ext !== 'jpg' && $ext !== 'jpeg' && $ext !== 'png'){
+  header ("Location: imagemcampanha.php");
+  exit;
+}
 $filename = "resources/".uniqid("recurso_").".".$ext;
 $bucket -> upload(fopen($temp,'r'),[
           'name' => $filename

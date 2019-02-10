@@ -35,23 +35,17 @@
       echo "<span class='customIcon fas fa-warehouse'></span>";
       echo "<button type='button'>Estoque/Transferência</button>";
     echo "</div>";
+    echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadmotorista');>";
+      echo "<span class='customIcon fas fa-car-alt'></span>";
+      echo "<button type='button'>Cadastro de Motoristas</button>";
+    echo "</div>";
     echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadproduto');>";
       echo "<span class='customIcon fas fa-shopping-basket' ></span>";
       echo "<button type='button'>Consulta de Produtos</button>";
     echo "</div>";
-  echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadmotorista');>";
-    echo "<span class='customIcon fas fa-car-alt'></span>";
-    echo "<button type='button'>Consulta Motoristas</button>";
-  echo "</div>";
+
 }else{
-  echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('estoque_mot');>";
-    echo "<span class='customIcon fas fa-warehouse'></span>";
-    echo "<button type='button'>Estoque</button>";
-  echo "</div>";
-  echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadproduto');>";
-    echo "<span class='customIcon fas fa-shopping-basket' ></span>";
-    echo "<button type='button'> Consulta Produtos</button>";
-  echo "</div>";
+  header("Location: estoque_mot.php");
 }
 }
 

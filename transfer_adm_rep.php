@@ -54,7 +54,7 @@ include("inc/verifica_sessao.inc");
 
   function transferRep() {
     var cod = document.getElementById('idusu').value;
-    var qtde = document.getElementById('qtderep').value;
+    var qtde = parseInt(document.getElementById('qtderep').value);
     console.log(quantidade);
     if(qtde !== null){
     if(qtde <= quantidade){
@@ -77,9 +77,11 @@ include("inc/verifica_sessao.inc");
 }
 
 function transferMoto() {
-var cod = document.getElementById('idusu').value;
-  var qtde = document.getElementById('qtdemoto').value;
+  var cod = document.getElementById('idusu').value;
+  var qtde = parseInt(document.getElementById('qtdemoto').value);
   console.log(quantidade);
+  console.log(qtde);
+  console.log(qtde )
   if(qtde !== null){
   if(qtde <= quantidade){
   $.post("transfer_adm_rep_query.php",

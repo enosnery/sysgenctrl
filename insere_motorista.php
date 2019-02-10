@@ -23,12 +23,13 @@ $nome = $_POST['nome'];
 $email = $_POST['email'];
 $login = strtolower($_POST['login']);
 $codigo = randomString();
+$cpf = $_POST['cpf'];
 $senha = isset($_POST['senha']) ? $_POST['senha'] : null ;
 
 if ($senha !== null) {
-  $produtos = "INSERT INTO usuario (nome, email, senha, login, codigo_motorista, is_motorista) VALUES  ($1, $2, $3, $4, $5, true);";
+  $produtos = "INSERT INTO usuario (nome, email, senha, login, cpf, codigo_motorista, is_motorista) VALUES  ($1, $2, $3, $4, $5, $6, true);";
   $resultado = pg_prepare($conexao, "query_insert_moto", $produtos);
-  $resultado = pg_execute($conexao, "query_insert_moto", array($nome, $email, $senha, $login,$codigo));
+  $resultado = pg_execute($conexao, "query_insert_moto", array($nome, $email, $senha, $login, $cpf, $codigo));
   $num_linhas = pg_affected_rows($resultado);
 }
 

@@ -1,6 +1,7 @@
 {
     "require": {
         "google/cloud-storage": "^1.10",
-        "gerencianet/gerencianet-sdk-php": "^2.3"
+        "gerencianet/gerencianet-sdk-php": "^2.3",
+        "igorescobar/jquery-mask-plugin": "^1.14"
     }
 }

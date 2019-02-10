@@ -13,7 +13,7 @@ include('inc/cabecalho.inc');
            </div>
            <div class="totalContainer">
              <div class="wrapper centAlign">
-              <span>Total: R$ <input type="text" id="valorTotal" value=0.0 readonly /></span>
+              <span>Total: R$<input type="text" id="valorTotal" value=0 readonly /></span>
             </div>
          </div>
          <div class="pagamentoContainer">
@@ -24,6 +24,9 @@ include('inc/cabecalho.inc');
       </div>
   </body>
   <script type="text/javascript">
+  $(document).ready(function(){
+    $('#valorTotal').maskMoney();
+  });
   var s=document.createElement('script');s.type='text/javascript';
 var v=parseInt(Math.random()*1000000);
 s.src='https://sandbox.gerencianet.com.br/v1/cdn/a44177e8cdfe392334de0cf988b19987/'+v;
@@ -95,16 +98,24 @@ console.log(payment);
     });
 }
 
-function addItem(index){
+function addItem(index, stock){
+  occurrences = arrayIds.filter(v => v === index).length;
+  console.log(stock);
+  console.log(occurrences);
 
+  if(occurrences <= stock){
   var total = document.getElementById("valorTotal");
-  var tmpValue = parseFloat(document.getElementById("product-value-"+index.toString()).value).toFixed(2);
+  var tmpValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
   var itemValue = tmpValue.toString().replace(".","");
   var itemId = document.getElementById("product-id-"+index.toString()).value;
+  console.log
+  total.value = parseFloat(parseFloat(total.value) + tmpValue).toFixed(2);
   var item = {item: itemId, value: itemValue};
   arrayIds.push(item);
-  total.value = parseFloat(parseFloat(total.value) + tmpValue).toFixed(2);
   console.log(arrayIds);
+}else{
+  return;
+}
 }
 
 function removeItem(index){
@@ -114,8 +125,9 @@ function removeItem(index){
   var itemId = document.getElementById("product-id-"+index.toString()).value;
   arrayIds.splice(arrayIds.indexOf(itemId), 1);
   var temp = parseFloat(parseFloat(total.value) - itemValue).toFixed(2);
-   total.value = (temp >= 0 )? temp : 0.0;
+   total.value = (temp > 0 )? temp : 0.0;
    console.log(arrayIds);
+if(total.value==0) total.text = '0.00';
 // }
 
 

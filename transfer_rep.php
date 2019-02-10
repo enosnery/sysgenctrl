@@ -57,7 +57,7 @@ include("inc/verifica_sessao.inc");
     var qtde = document.getElementById('qtderep').value;
     console.log(quantidade);
     if(qtde !== null){
-    if(qtde >= quantidade){
+    if(qtde <= quantidade){
     $.post("transfer_rep_query.php",
     {
       "idproduto": idproduto,
@@ -82,9 +82,9 @@ function transferMoto() {
   var qtde = document.getElementById('qtdemoto').value;
   console.log(quantidade);
   console.log(qtde);
-  console.log(qtde>=quantidade);
+  console.log(qtde <= quantidade);
   if(qtde !== null){
-  if(qtde >= quantidade){
+  if(qtde <= quantidade){
   $.post("transfer_moto_rep_query.php",
   {
     "idproduto": idproduto,

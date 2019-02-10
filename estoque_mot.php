@@ -25,7 +25,7 @@ include ('inc/verifica_sessao.inc');
   </body>
   <script type="text/javascript">
   function voltar() {
-    window.location = "menu_admin.php";
+    window.location = "index.php";
   }
   function focusPesquisa(){
     $("#pesquisa").focus();

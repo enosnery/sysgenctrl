@@ -32,13 +32,13 @@ $i = 0 ;
   $login = $row['login'];
 	echo "<input id='index' name='index' type='hidden' value='$id'>";
   echo "<label for='nome'>Nome</label>";
-	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' />";
+	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' maxlength='40'/>";
   echo "<label for='email'>Email</label>";
-	echo "<input id='email' name='email' class='prodDetailInput centAlign' value='$email' />";
+	echo "<input id='email' name='email' class='prodDetailInput centAlign' value='$email' maxlength='50'/>";
   echo "<label for='login'>Login</label>";
 	echo "<input id='login' name='login' class='prodDetailInput centAlign' value='$login' readonly/>";
   echo "<label for='senha'>Senha</label>";
-	echo "<input type='password' id='btn-senha' name='senha' class='prodDetailInput centAlign' value='' disabled>";
+	echo "<input type='password' id='btn-senha' name='senha' class='prodDetailInput centAlign' value='' maxlength='20' disabled>";
   echo "<a type='button' class='btn btn-primary' onclick='liberaSenha();'> Alterar Senha</a> ";
   echo "</input>";
 }

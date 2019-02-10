@@ -18,6 +18,9 @@ $bucket = $storage->bucket('cloudwebbucket');
 $files = $_FILES["foto"]["name"];
 $temp = $_FILES["foto"]["tmp_name"];
 $ext = pathinfo($files, PATHINFO_EXTENSION);
+if($ext !== 'jpg' && $ext !== 'jpeg' && $ext !== 'png'){
+  exit;
+}
 $filename = "resources/".uniqid("produto_").".".$ext;
 $nome = $_POST['nome'];
 $valor = (float)str_replace(",", "",$_POST['valor']);
