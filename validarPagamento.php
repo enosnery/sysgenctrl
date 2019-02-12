@@ -50,7 +50,7 @@ $creditCard = [
 $payment = [
   'credit_card' => $creditCard // forma de pagamento (credit_card = cartão)
 ];
-
+echo $payment;
 $body = [
   'payment' => $payment
 ];
@@ -62,6 +62,7 @@ try {
     print_r($charge);
 } catch (GerencianetException $e) {
     print_r($e->code);
+    echo "<br/>";
     print_r($e->error);
     print_r($e->errorDescription);
 } catch (Exception $e) {

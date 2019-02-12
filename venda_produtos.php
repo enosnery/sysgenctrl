@@ -18,7 +18,7 @@ include('inc/cabecalho.inc');
          </div>
          <div class="pagamentoContainer">
            <div class="centAlign pagarButton">
-                 <input type="button" class="btn btn-success pagarButton centAlign" value="Pagar" onclick="pagar();" />
+                 <input type="button" class="btn btn-success pagarButton centAlign" value="Pagar" onclick="criarTransacao();" />
                </div>
          </div>
       </div>
@@ -37,6 +37,7 @@ if(!document.getElementById('a44177e8cdfe392334de0cf988b19987'))
 $gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};
 
 var arrayIds = [];
+var uniqueIds = [];
 var charge_id = null;
 
 function isNull(i){
@@ -48,9 +49,11 @@ function isNull(i){
 }
 
 function criarTransacao(){
-  var total = document.getElementById('valorTotal');
+  var total = document.getElementById('valorTotal').value;
+  var totalitens = arrayIds.length;
   var myjson =  JSON.stringify(arrayIds);
   console.log(myjson);
+  if(confirm("Valor Total: R$ " + total + "\nTotal de Itens: " + totalitens + "\nDeseja finalizar a compra?" )){
   if(arrayIds.length > 0){
   $.post('criar_transacao.php',
   {
@@ -58,25 +61,36 @@ function criarTransacao(){
   },
   function(result){
     var transaction = JSON.parse(result);
+    console.log(transaction);
     charge_id = transaction.data.charge_id;
     validarPagamento(charge_id);
   });
 }
 }
 
-function pagar(){
+function baixaEstoque(){
   var total = document.getElementById('valorTotal').value;
   var totalitens = arrayIds.length;
+  var myjson1 =  JSON.stringify(arrayIds);
+  var myjson2 =  JSON.stringify(uniqueIds);
 
-  if(confirm("Valor Total: R$ " + total + "\nTotal de Itens: " + totalitens + "\nDeseja finalizar a compra?" )){
-    alert('Compra Finalizada!');
-
-    setTimeout(function(){window.location="index.php"},3000);
+  console.log(myjson1);
+  console.log(myjson2);
+  if(arrayIds.length > 0){
+  $.post('baixa_estoque_mot.php',
+  {
+    "items": myjson1,
+    "ids": myjson2
+  },
+  function(result){
+    alert(result);
+    setTimeout(function(){window.location="index.php"},500);
+  });
+}
   }
 }
 
 function validarPagamento(chargeid){
-  var payment;
   $gn.ready(function(checkout) {
 
   var callback = function(error, response) {
@@ -85,11 +99,20 @@ function validarPagamento(chargeid){
       console.error(error);
     } else {
       // Trata a resposta
+      console.log("entrou aqui");
       console.log(response);
+      $.post("validarPagamento.php",
+      {
+        chargeid: charge_id,
+        token: payment
+      },
+      function(response){
+          alert(response);
+        });
     }
   };
 
-  var payment = checkout.getPaymentToken({
+var  payment = checkout.getPaymentToken({
     brand: 'mastercard', // bandeira do cartão
     number: '5401056120155722', // número do cartão
     cvv: '630', // código de segurança
@@ -98,15 +121,7 @@ function validarPagamento(chargeid){
   }, callback);
 
 });
-console.log(payment);
-  $.post("validarPagamento.php",
-  {
-    chargeid: charge_id,
-    token: payment
-  },
-  function(response){
-      alert(response);
-    });
+
 }
 
 function addItem(index, idproduto, stock){
@@ -123,25 +138,43 @@ for(var i = 0; i < arrayIds.length; ++i){
   total.value = parseFloat(parseFloat(total.value) + tmpValue).toFixed(2);
   var item = {item: itemId, value: itemValue};
   arrayIds.push(item);
+  if(!(uniqueIds.includes(itemId))){
+    uniqueIds.push(itemId);
+  }
+    console.log("0");
+    console.log(uniqueIds);
 }else{
   return;
 }
 }
 
-function removeItem(index){
-
+function removeItem(index, idproduto){
+  var count = 0;
+  for(var i = 0; i < arrayIds.length; ++i){
+    if(arrayIds[i]['item'] == idproduto)
+        count++;
+  }
+  if(count > 0){
   var total = document.getElementById("valorTotal");
   var itemValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
   var itemId = document.getElementById("product-id-"+index.toString()).value;
-  arrayIds.splice(arrayIds.indexOf(itemId), 1);
+  removeFromArray(itemId, arrayIds);
+  // arrayIds.splice(search(itemId, arrayIds), 1);
   var temp = parseFloat(parseFloat(total.value) - itemValue).toFixed(2);
    total.value = (temp > 0 )? temp : 0.0;
-   console.log(arrayIds);
-if(total.value==0) total.text = '0.00';
-// }
+  }
+}
 
+function removeFromArray(nameKey, myArray){
+let result = myArray.filter(o=> o.item === nameKey).pop();
+for( var i = 0; i < myArray.length; i++){
+   if ( myArray[i] === result) {
+     myArray.splice(i, 1);
+   }
+}
 
 }
+
   </script>
 
   </html>

@@ -1,14 +1,22 @@
 <?php
-
+session_start();
+include ('inc/conectar.inc');
 require __DIR__.'/vendor/autoload.php'; // caminho relacionado a SDK
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
  $data = json_decode($_POST['items'], true);
+$idmotorista = $_SESSION['$motorista'];
 
-$clientId = 'Client_Id_fcaded836d54be5a8597d1fb64a9d3c3be32dca9'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
-$clientSecret = 'Client_Secret_b6b437aa7bccb47df2cb43eacffb6cd2782c9606'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
+$keyquery = "SELECT pagamento_id, pagamento_secret FROM usuario WHERE idusuario = $idmotorista;";
+$resultado = pg_query($conexao, $keyquery);
+
+$num_linhas = pg_num_rows($resultado);
+if($num_linhas > 0){
+  while($row = pg_fetch_assoc($resultado)){
+$clientId = $row['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+$clientSecret = $row['pagamento_secret']; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
 
 $options = [
   'client_id' => $clientId,
@@ -67,5 +75,9 @@ try {
     print_r($e->errorDescription);
 } catch (Exception $e) {
     print_r($e->getMessage());
+}
+}
+}else{
+  echo "Não foi possível processar o pagamento. Tente Novamente!";
 }
 ?>
