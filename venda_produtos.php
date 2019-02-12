@@ -27,14 +27,20 @@ include('inc/cabecalho.inc');
   $(document).ready(function(){
     $('#valorTotal').maskMoney();
   });
-  var s=document.createElement('script');s.type='text/javascript';
+
+var s=document.createElement('script');
+s.type='text/javascript';
 var v=parseInt(Math.random()*1000000);
-s.src='https://sandbox.gerencianet.com.br/v1/cdn/a44177e8cdfe392334de0cf988b19987/'+v;
+s.src='https://sandbox.gerencianet.com.br/v1/cdn/lightbox/a44177e8cdfe392334de0cf988b19987/'+v;
 s.async=false;s.id='a44177e8cdfe392334de0cf988b19987';
 if(!document.getElementById('a44177e8cdfe392334de0cf988b19987'))
 {document.getElementsByTagName('head')[0].appendChild(s);
 };
-$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};
+$gn={
+  validForm:true,
+  processed:false,
+  done:{},
+  ready:function(fn){$gn.done=fn;}};
 
 var arrayIds = [];
 var uniqueIds = [];
