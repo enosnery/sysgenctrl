@@ -2,6 +2,19 @@
 include('inc/cabecalho.inc');
 
 ?>
+<style>
+.ui-dialog-titlebar {
+  display: none;
+    visibility: hidden;
+}
+.ui-dialog-titlebar-close {
+    visibility: hidden;
+}
+
+input{
+  border:1px solid gainsboro;
+}
+</style>
 <body>
          <div id="appBody">
            <div class="clearfix"></div>
@@ -22,25 +35,18 @@ include('inc/cabecalho.inc');
                </div>
          </div>
       </div>
+      <div id="dadoscartao" style="display:none">
+        <?php include("dadoscartao.php"); ?>
+      </div>
   </body>
+
   <script type="text/javascript">
+
+
+
   $(document).ready(function(){
     $('#valorTotal').maskMoney();
   });
-
-var s=document.createElement('script');
-s.type='text/javascript';
-var v=parseInt(Math.random()*1000000);
-s.src='https://sandbox.gerencianet.com.br/v1/cdn/lightbox/a44177e8cdfe392334de0cf988b19987/'+v;
-s.async=false;s.id='a44177e8cdfe392334de0cf988b19987';
-if(!document.getElementById('a44177e8cdfe392334de0cf988b19987'))
-{document.getElementsByTagName('head')[0].appendChild(s);
-};
-$gn={
-  validForm:true,
-  processed:false,
-  done:{},
-  ready:function(fn){$gn.done=fn;}};
 
 var arrayIds = [];
 var uniqueIds = [];
@@ -58,6 +64,7 @@ function criarTransacao(){
   var total = document.getElementById('valorTotal').value;
   var totalitens = arrayIds.length;
   var myjson =  JSON.stringify(arrayIds);
+  var myjson2 =  JSON.stringify(uniqueIds);
   console.log(myjson);
   if(confirm("Valor Total: R$ " + total + "\nTotal de Itens: " + totalitens + "\nDeseja finalizar a compra?" )){
   if(arrayIds.length > 0){
@@ -69,7 +76,16 @@ function criarTransacao(){
     var transaction = JSON.parse(result);
     console.log(transaction);
     charge_id = transaction.data.charge_id;
-    validarPagamento(charge_id);
+    $.post("transaction_data.php",
+  {
+    charge_id: charge_id,
+    "items": myjson,
+      "ids": myjson2
+  },
+  function(response){
+    window.location="dadoscartao.php";
+  }
+  );
   });
 }
 }
@@ -96,39 +112,7 @@ function baixaEstoque(){
   }
 }
 
-function validarPagamento(chargeid){
-  $gn.ready(function(checkout) {
 
-  var callback = function(error, response) {
-    if(error) {
-      // Trata o erro ocorrido
-      console.error(error);
-    } else {
-      // Trata a resposta
-      console.log("entrou aqui");
-      console.log(response);
-      $.post("validarPagamento.php",
-      {
-        chargeid: charge_id,
-        token: payment
-      },
-      function(response){
-          alert(response);
-        });
-    }
-  };
-
-var  payment = checkout.getPaymentToken({
-    brand: 'mastercard', // bandeira do cartão
-    number: '5401056120155722', // número do cartão
-    cvv: '630', // código de segurança
-    expiration_month: '11', // mês de vencimento
-    expiration_year: '2025' // ano de vencimento
-  }, callback);
-
-});
-
-}
 
 function addItem(index, idproduto, stock){
   var count = 0;
@@ -141,7 +125,7 @@ for(var i = 0; i < arrayIds.length; ++i){
   var tmpValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
   var itemValue = tmpValue.toString().replace(".","");
   var itemId = document.getElementById("product-id-"+index.toString()).value;
-  total.value = parseFloat(parseFloat(total.value) + tmpValue).toFixed(2);
+  total.value = parseFloat((parseFloat(parseFloat(total.value) + tmpValue).toFixed(2))/100).toFixed(2);
   var item = {item: itemId, value: itemValue};
   arrayIds.push(item);
   if(!(uniqueIds.includes(itemId))){
@@ -178,9 +162,6 @@ for( var i = 0; i < myArray.length; i++){
      myArray.splice(i, 1);
    }
 }
-
 }
-
   </script>
-
   </html>

@@ -3,9 +3,10 @@ session_start();
 include("inc/conectar.inc");
 
 
- $data = json_decode($_POST['items'], true);
- $ids = json_decode($_POST['ids'], true);
+ $data = json_decode($_SESSION['$data'], true);
+ $ids = json_decode($_SESSION['$ids'], true);
  $idmotorista = $_SESSION['$motorista'];
+
 
 $quantidade = 0;
 for($j=0; $j < count($ids); $j++){
@@ -19,10 +20,11 @@ for($j=0; $j < count($ids); $j++){
 if($quantidade != 0){
 $update = "UPDATE estoque_motorista SET quantidade_atual = quantidade_atual - $quantidade WHERE idmotorista = $idmotorista and id_produto = $ids[$j];";
 $result = pg_query($conexao, $update);
+
 }
 $quantidade = 0;
 
 }
-
+header("Location: index.php");
 
 ?>

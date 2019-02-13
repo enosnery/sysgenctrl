@@ -1,10 +1,17 @@
 <?php
+session_start();
 require __DIR__.'/vendor/autoload.php'; // caminho relacionado a SDK
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$charge_id = $_POST['chargeid'];
+$charge_id = $_SESSION['charge_id'];
+$street = $_SESSION['street'];
+$streetnumber = $_SESSION['street_number'];
+$neighborhood = $_SESSION['neighborhood'];
+$zipcode = $_SESSION['zipcode'];
+$city = $_SESSION['city'];
+$state = $_SESSION['state'];
 $paymentToken = $_POST['token'];
 $clientId = 'Client_Id_fcaded836d54be5a8597d1fb64a9d3c3be32dca9'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
 $clientSecret = 'Client_Secret_b6b437aa7bccb47df2cb43eacffb6cd2782c9606'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
@@ -23,7 +30,7 @@ $params = [
 // $paymentToken = '6426f3abd8688639c6772963669bbb8e0eb3c319'; // payment_token obtido na 1ª etapa (através do Javascript único por conta Gerencianet)
 
 $customer = [
-  'name' => 'Gorbadoc Oldbuck', // nome do cliente
+  'name' => 'Cliente Sem Cadastro', // nome do cliente
   'cpf' => '94271564656' , // cpf do cliente
   'email' => 'email_do_cliente@servidor.com.br' , // endereço de email do cliente
   'phone_number' => '5144916523', // telefone do cliente
@@ -31,12 +38,12 @@ $customer = [
 ];
 
 $billingAddress = [
-  'street' => 'Street 3',
-  'number' => 10,
-  'neighborhood' => 'Bauxita',
-  'zipcode' => '35400000',
-  'city' => 'Ouro Preto',
-  'state' => 'MG',
+  'street' => $street,
+  'number' => $streetnumber,
+  'neighborhood' => $neighborhood,
+  'zipcode' => $zipcode,
+  'city' => $city,
+  'state' => $state,
 ];
 
 $creditCard = [
@@ -62,7 +69,6 @@ try {
     print_r($charge);
 } catch (GerencianetException $e) {
     print_r($e->code);
-    echo "<br/>";
     print_r($e->error);
     print_r($e->errorDescription);
 } catch (Exception $e) {
