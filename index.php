@@ -49,6 +49,19 @@ session_destroy();
                    </div>
 
   </body>
+  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBhRdplJsvsNgiiTSQ-homAHPna5Qu23FE",
+    authDomain: "cloudweb-cf147.firebaseapp.com",
+    databaseURL: "https://cloudweb-cf147.firebaseio.com",
+    projectId: "cloudweb",
+    storageBucket: "cloudweb.appspot.com",
+    messagingSenderId: "492398944724"
+  };
+  firebase.initializeApp(config);
+</script>
   <script type="text/javascript">
 $(document).ready(function() {
   $("#nocaddiv").hide();

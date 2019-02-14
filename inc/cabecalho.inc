@@ -19,9 +19,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
 <link rel="apple-touch-icon" href="icon-152.png">
+<link rel="manifest" href="inc/manifest.json">
 <!-- for Chrome on Android, multi-resolution icon of 196x196 -->
 <meta name="mobile-web-app-capable" content="yes">
 <!-- <link rel="shortcut icon" sizes="196x196" href="icon-196.png"> -->
+<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-messaging.js"></script>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
