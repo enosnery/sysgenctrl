@@ -63,12 +63,12 @@ echo "<tr>";
 		$idcompra = $row['id'];
 	$id = $row['transaction_id'];
 	$valor = $row['valor_total'];
-	if($row['is_pendente']==='t'){
-			echo "<input type='hidden' class='confirm-pendente' value=true></input>";
-	echo "<td id='pendenteItem-$id' onclick='getYellow($id);'> ";
-}else if($row['is_pagamento_pendente']!=='t'){
-	echo "<input type='hidden' class='confirm-pendente'></input>";
-	echo "<td id='pendenteItem-$id' onclick='getGreen($id)'> ";
+	if($row['is_pendente']==='t' && $row['is_pagamento_pendente']==='t'){
+
+	echo "<td class='yellow-div' style='width:90vw;background-color:#FADA5E;'> ";
+}else if($row['is_pendente']==='f' && $row['is_pagamento_pendente']==='f'){
+
+	echo "<td class='green-div' style='width:90vw;background-color:#0B6623;color:white'> ";
 }
 	echo "<table id='estoqueListItem'>";
 	echo "<tr>";
