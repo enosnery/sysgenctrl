@@ -58,9 +58,12 @@ for ($i=0; $i < count($data) ; $i++) {
 //    'items' => $items,
 //    'metadata' => $metadata
 // ];
+$metadata = array('notification_url'=>'http://35.231.173.150/market-homolog/gn_confirma_transacao.php');
 
 $body  =  [
-    'items' => $items
+    'items' => $items,
+    'metadata' => $metadata
+
 ];
 
 try {

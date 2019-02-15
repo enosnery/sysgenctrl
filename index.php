@@ -1,16 +1,12 @@
 <?php
 // clear session from globals
-if(isset($_COOKIE["login_id"]) && isset($_COOKIE['is_motorista']) && $_COOKIE['is_motorista'] === 't') {
-  header("Location: compras_pendentes.php");
-}else{
+// if(isset($_COOKIE["login_id"])) {
+//   header("Location: compras_pendentes.php");
+// }else{
   include('inc/cabecalho.inc');
 $_SESSION = array();
-// $_SESSION['$login'] = null;
-//clear session from disk
 session_destroy();
-
-
-}
+// }
 ?>
 <style>
 #nocaddiv{

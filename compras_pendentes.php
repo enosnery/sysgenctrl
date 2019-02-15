@@ -4,7 +4,7 @@ if(session_id() == '' || !isset($_SESSION)) {
     session_start();
 }
 include('inc/cabecalho.inc');
-include ('inc/verifica_sessao.inc');
+// include('inc/verifica_sessao.inc');
 ?>
 <body>
          <div id="appBody">
@@ -38,6 +38,16 @@ $(document).ready(function(){
   window.location = "logout.php";
 }
   }
+
+  function getYellow(index){
+    $("#pendenteItem-"+index).css({"background-color": "#FADA5E", "width": "90vw"});
+  }
+
+  function getGreen(){
+    $("#pendenteItem-"+index).css({"background-color": "#0B6623", "width": "90vw"});
+
+  }
+
 
   function goToEstoque() {
     window.location = "estoque_mot.php";

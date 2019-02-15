@@ -24,8 +24,9 @@ var payment = response.data.payment_token;
   {
     token: payment
   },function(result){
-      alert("Compra Finalizada!");
-      window.location="baixa_estoque_mot.php";
+    getStatus();
+      // alert(result);
+      // window.location="baixa_estoque_mot.php";
   });
   }
 };
@@ -38,4 +39,23 @@ checkout.getPaymentToken({
   }, callback);
 
 });
+
+function getStatus(){
+  setInterval(function(){  $.post("get_transaction_status.php",
+  {},function(result){
+    if(result === "1"){
+      console.log("deucerto");
+      console.log(result);
+      alert("Pagamento Concluído com Sucesso!");
+      window.location = "baixa_estoque_mot.php";
+
+    }else{
+      console.log(result);
+      console.log("deu ruim");
+
+    }
+
+  });
+}, 2000);
+}
 </script>
