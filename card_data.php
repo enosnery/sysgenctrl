@@ -1,6 +1,10 @@
 <?php
 session_start();
+include("inc/conectar.inc");
 
+$idmotorista = $_SESSION['$motorista'];
+$transaction = $_SESSION['charge_id'];
+$valortotal = $_SESSION['total'];
 $brand = $_POST['brand'];
 $number = $_POST['number'];
 $cvv = $_POST['cvv'];
@@ -24,5 +28,13 @@ $_SESSION['zipcode'] = $zipcode;
 $_SESSION['city'] = $city;
 $_SESSION['state'] = $state;
 
-header("Location: getpaymenttoken.php");
+$pendente = "INSERT INTO compras_pendentes (id_motorista, is_pendente, valor_total, transaction_id) VALUES ($idmotorista, TRUE, $valortotal, $transaction);";
+$resultado = pg_query($conexao, $pendente);
+
+if (pg_affected_rows($resultado)>0){
+header("Location: aguarda_confirmacao.php");
+}else{
+  echo "Erro ao Criar a Transação!";
+}
+// header("Location: aguarda_confirmacao.php");
 ?>

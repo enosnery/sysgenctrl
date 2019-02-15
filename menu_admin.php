@@ -15,7 +15,7 @@ include("inc/verifica_sessao.inc");
   </body>
   <script type="text/javascript">
   function voltar() {
-    window.location = "index.php";
+  window.location = "logout.php";
   }
   function redirectTo(page) {
     var redirect = page + ".php";

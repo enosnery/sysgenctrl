@@ -45,7 +45,7 @@
     echo "</div>";
 
 }else{
-  header("Location: estoque_mot.php");
+  header("Location: compras_pendentes.php");
 }
 }
 

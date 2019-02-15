@@ -24,6 +24,10 @@ while ($row = pg_fetch_assoc($resultado)) {
 			$_SESSION['is_adm']=$row['is_usuario_adm'];
 			$_SESSION['is_rep']=$row['is_usuario_representante'];
 			$_SESSION['is_mot']=$row['is_motorista'];
+			if($row['is_motorista']==='t'){
+			setcookie('login_id', $row['idusuario'], time()+86400);
+			setcookie('is_motorista', $row['is_motorista'], time()+86400);
+			}
 			echo 0;
 			// header("Location: menu_admin.php");
 			}else{

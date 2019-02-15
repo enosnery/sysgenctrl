@@ -1,4 +1,5 @@
 <?php
+
 if(session_id() == '' || !isset($_SESSION)) {
     // session isn't started
     session_start();
@@ -25,7 +26,7 @@ include ('inc/verifica_sessao.inc');
   </body>
   <script type="text/javascript">
   function voltar() {
-    window.location = "index.php";
+    window.location = "compras_pendentes.php";
   }
   function focusPesquisa(){
     $("#pesquisa").focus();

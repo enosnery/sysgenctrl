@@ -56,7 +56,7 @@ include('inc/cabecalho.inc');
   }
 }
   function voltar() {
-    window.location = "index.php";
+  window.location = "logout.php";
   }
   </script>
   </html>

@@ -1,7 +1,8 @@
 <?php
-//Encerando a sessao e liberando o usuário
+//Encerando a sessao e liberando o usuï¿½rio
 session_start();
 $_SESSION = array();
+setcookie("login_id", "", time()-3600);
 session_destroy();
 header("Location: index.php");
 ?>

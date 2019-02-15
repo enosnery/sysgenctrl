@@ -75,19 +75,25 @@ function criarTransacao(){
   function(result){
     var transaction = JSON.parse(result);
     console.log(transaction);
-    charge_id = transaction.data.charge_id;
-    $.post("transaction_data.php",
-  {
-    charge_id: charge_id,
-    "items": myjson,
-      "ids": myjson2
-  },
-  function(response){
-    window.location="dadoscartao.php";
-  }
-  );
+    console.log(total);
+     var charge_id = transaction.data.charge_id;
+     createTransactionData(myjson, myjson2, total, charge_id );
   });
 }
+}
+function createTransactionData(myjson, myjson2, total, charge_id){
+$.post("transaction_data.php",
+{
+"charge_id": charge_id,
+"items": myjson,
+  "ids": myjson2,
+  "total": total
+},
+function(response){
+// alert(response);
+window.location="dadoscartao.php";
+}
+);
 }
 
 function baixaEstoque(){
