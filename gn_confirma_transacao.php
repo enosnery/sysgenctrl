@@ -50,6 +50,11 @@ try {
     echo $update;
     $resultado = pg_query($conexao, $update);
     }
+    if($statusAtual === 'unpaid'){
+    $update = "UPDATE compras_pendentes SET is_unpaid = true where transaction_id = $charge_id::text";
+    echo $update;
+    $resultado = pg_query($conexao, $update);
+    }
     // Com estas informações, você poderá consultar sua base de dados e atualizar o status da transação especifica, uma vez que você possui o "charge_id" e a String do STATUS
 
     echo "O id da transação é: ".$charge_id." seu novo status é: ".$statusAtual;

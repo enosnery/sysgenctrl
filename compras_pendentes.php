@@ -7,13 +7,26 @@ include('inc/cabecalho.inc');
 // include('inc/verifica_sessao.inc');
 ?>
 <style>
-.green-div{
-  background-color: "#0B6623";
+  .tabela-acoes{
+    cursor:pointer;
+    margin-left:0.5em;
+  }
+  .ui-dialog-titlebar-close {
+    visibility: hidden;
 }
-.yellow-div{
-  background-color: "#FADA5E";
+.ui-dialog {
+        position: fixed;
+        top:2%;
+        padding: .1em;
+        overflow: hidden;
 }
-
+.header{
+font-weight:bolder;
+}
+.hist-list{
+padding:5px;
+border-bottom:2px solid black;
+}
 </style>
 
 <body>
@@ -34,15 +47,16 @@ include('inc/cabecalho.inc');
 
 
      </div>
-
+     <div id="dialog-base" title='Produtos da Compra' >
+     </div>
   </body>
   <script type="text/javascript">
-$(document).ready(function(){
-  setInterval(function(){
-    console.log("deu 1 refresh");
-  $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
-},10000);
-});
+// $(document).ready(function(){
+//   setInterval(function(){
+//     console.log("deu 1 refresh");
+//   $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
+// },10000);
+// });
   function voltar() {
     if(confirm("Deseja Encerrar a Sessão?")){
   window.location = "logout.php";
@@ -70,6 +84,43 @@ $(document).ready(function(){
     });
     };
   }
+
+  function historico(index){
+    $.post("lista_pendente_detail.php",
+  {
+    transaction: index
+  },
+  function(result){
+  $("#dialog-base").append(result);
+  openLista();
+});
+  }
+
+  function openLista() {
+         $( "#dialog" ).dialog({
+                autoOpen: true,
+                modal: true,
+                width: 340,
+                minWidth: 200,
+                height: 400,
+                minHeight:150,
+                resizable: false,
+                draggable: false,
+                buttons: {
+                Fechar: function() {
+                $( this ).dialog( "close" );
+                $("#dialog").remove();
+                }
+                },
+                hide: {
+                effect: "fade",
+                duration: 400
+                }
+                });
+                $( ".selector" ).dialog({
+                closeOnEscape: true
+                });
+        }
 
   </script>
   </html>
