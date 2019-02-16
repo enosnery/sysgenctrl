@@ -51,12 +51,12 @@ border-bottom:2px solid black;
      </div>
   </body>
   <script type="text/javascript">
-// $(document).ready(function(){
-//   setInterval(function(){
-//     console.log("deu 1 refresh");
-//   $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
-// },10000);
-// });
+$(document).ready(function(){
+  setInterval(function(){
+    console.log("deu 1 refresh");
+  $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
+},10000);
+});
   function voltar() {
     if(confirm("Deseja Encerrar a Sessão?")){
   window.location = "logout.php";
