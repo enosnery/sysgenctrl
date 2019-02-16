@@ -26,7 +26,7 @@ input{
            </div>
            <div class="totalContainer">
              <div class="wrapper centAlign">
-              <span>Total: R$<input type="text" id="valorTotal" value=0 readonly /></span>
+              <span>Total: R$<input type="text" id="valorTotal" step=0.01 value=0.00 readonly /></span>
             </div>
          </div>
          <div class="pagamentoContainer">
@@ -43,14 +43,16 @@ input{
   <script type="text/javascript">
 
 
-
+  var arrayIds = [];
+  var uniqueIds = [];
+  var charge_id = null;
+  var total;
   $(document).ready(function(){
     $('#valorTotal').maskMoney();
+    total = 0;
   });
 
-var arrayIds = [];
-var uniqueIds = [];
-var charge_id = null;
+
 
 function isNull(i){
   if(i == null){
@@ -61,7 +63,7 @@ function isNull(i){
 }
 
 function criarTransacao(){
-  var total = document.getElementById('valorTotal').value;
+  total = document.getElementById('valorTotal').value;
   var totalitens = arrayIds.length;
   var myjson =  JSON.stringify(arrayIds);
   var myjson2 =  JSON.stringify(uniqueIds);
@@ -81,6 +83,8 @@ function criarTransacao(){
   });
 }
 }
+}
+
 function createTransactionData(myjson, myjson2, total, charge_id){
 $.post("transaction_data.php",
 {
@@ -96,30 +100,6 @@ window.location="dadoscartao.php";
 );
 }
 
-function baixaEstoque(){
-  var total = document.getElementById('valorTotal').value;
-  var totalitens = arrayIds.length;
-  var myjson1 =  JSON.stringify(arrayIds);
-  var myjson2 =  JSON.stringify(uniqueIds);
-
-  console.log(myjson1);
-  console.log(myjson2);
-  if(arrayIds.length > 0){
-  $.post('baixa_estoque_mot.php',
-  {
-    "items": myjson1,
-    "ids": myjson2
-  },
-  function(result){
-    alert(result);
-    setTimeout(function(){window.location="index.php"},500);
-  });
-}
-  }
-}
-
-
-
 function addItem(index, idproduto, stock){
   var count = 0;
 for(var i = 0; i < arrayIds.length; ++i){
@@ -127,17 +107,17 @@ for(var i = 0; i < arrayIds.length; ++i){
         count++;
 }
   if(count < stock){
-  var total = document.getElementById("valorTotal");
+  total = document.getElementById("valorTotal");
   var tmpValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
-  var itemValue = tmpValue.toString().replace(".","");
+  var itemValue = tmpValue;
   var itemId = document.getElementById("product-id-"+index.toString()).value;
-  total.value = parseFloat((parseFloat(parseFloat(total.value) + tmpValue).toFixed(2))/100).toFixed(2);
+  total.value = (parseFloat(parseFloat(total.value) + tmpValue/100).toFixed(2));
   var item = {item: itemId, value: itemValue};
   arrayIds.push(item);
   if(!(uniqueIds.includes(itemId))){
     uniqueIds.push(itemId);
   }
-    console.log("0");
+    console.log(arrayIds);
     console.log(uniqueIds);
 }else{
   return;
@@ -151,14 +131,15 @@ function removeItem(index, idproduto){
         count++;
   }
   if(count > 0){
-  var total = document.getElementById("valorTotal");
-  var itemValue = parseFloat(document.getElementById("product-value-"+index.toString()).value);
+  total = document.getElementById("valorTotal");
+  var itemValue = parseFloat(document.getElementById("product-value-"+index.toString()).value)/100;
   var itemId = document.getElementById("product-id-"+index.toString()).value;
   removeFromArray(itemId, arrayIds);
   // arrayIds.splice(search(itemId, arrayIds), 1);
   var temp = parseFloat(parseFloat(total.value) - itemValue).toFixed(2);
    total.value = (temp > 0 )? temp : 0.0;
   }
+  console.log(arrayIds);
 }
 
 function removeFromArray(nameKey, myArray){

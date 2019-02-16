@@ -29,7 +29,7 @@ $_SESSION['city'] = $city;
 $_SESSION['state'] = $state;
 $current_date = date('Y-m-d H:i:s');
 
-$pendente = "INSERT INTO compras_pendentes (id_motorista, is_pendente, valor_total, transaction_id, creation_date) VALUES ($idmotorista, TRUE, $valortotal, $transaction, current_timestamp);";
+$pendente = "INSERT INTO compras_pendentes (id_motorista, is_pendente, valor_total, transaction_id, date_register) VALUES ($idmotorista, TRUE, $valortotal, $transaction, current_timestamp);";
 $resultado = pg_query($conexao, $pendente);
 
 if (pg_affected_rows($resultado)>0){

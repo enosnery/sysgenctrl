@@ -74,7 +74,7 @@ echo "<tr>";
 		echo "</td>";
 		echo "<td id='estoqueqtdDesc' class='estoqueqtdDesc' >";
 		// echo "<a style='font-size:20px;' onclick='confirmar($idcompra);'><i class='fas fa-check-circle' style='color:#fff'></i></a>";
-	} else if($row['is_pendente']==='t' && $row['is_pagamento_pendente']==='t'){
+	} else if($row['is_pendente']==='t' || $row['is_pagamento_pendente']==='t'){
 
 	echo "<td class='yellow-div' style='width:90vw;background-color:#FADA5E;'> ";
 	echo "<table id='estoqueListItem'>";

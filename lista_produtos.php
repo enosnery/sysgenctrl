@@ -3,7 +3,7 @@ include("inc/conectar.inc");
 // include("inc/verifica_sessao.inc");
 $idmotorista = $_SESSION['$motorista'];
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT p.id, p.descricao, p.picture_url, p.valor, e.quantidade_atual FROM produtos p inner join estoque_motorista e on e.id_produto = p.id where e.idmotorista = $idmotorista and e.quantidade_atual > 0 ORDER BY id;";
+$produtos = "SELECT p.id, p.descricao, p.picture_url, p.valor::money::numeric, e.quantidade_atual FROM produtos p inner join estoque_motorista e on e.id_produto = p.id where e.idmotorista = $idmotorista and e.quantidade_atual > 0 ORDER BY id;";
 
 
 $resultado = pg_query($conexao, $produtos);

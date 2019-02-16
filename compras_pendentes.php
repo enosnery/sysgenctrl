@@ -71,7 +71,6 @@ $(document).ready(function(){
     $.post("confirmar_transacao_mot.php",
     {index: index},
      function (result){
-       alert(result);
        alert("Compra confirmada com Sucesso!");
        $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
      });
