@@ -9,15 +9,17 @@ $id = $_POST['index'];
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
+$pagamentoid = $_POST['pid'];
+$pagamentosec = $_POST['psec'];
 if ($senha === null) {
-    $produtos = "UPDATE usuario SET nome = $1, email = $2 WHERE idusuario = $3;";
+    $produtos = "UPDATE usuario SET nome = $1, email = $2, pagamento_id = $3, pagamento_secret = $4 WHERE idusuario = $5;";
     $resultado = pg_prepare($conexao, "query_login", $produtos);
-    $resultado = pg_execute($conexao, "query_login", array($nome, $email, $id));
+    $resultado = pg_execute($conexao, "query_login", array($nome, $email, $pagamentoid, $pagamentosec,$id));
 }else{
-  $produtos = "UPDATE usuario SET nome = $1, email = $2, senha = $3 WHERE idusuario = $4;";
+  $produtos = "UPDATE usuario SET nome = $1, email = $2, pagamento_id = $3, pagamento_secret = $4 ,senha = $5 WHERE idusuario = $6;";
 
   $resultado = pg_prepare($conexao, "query_login", $produtos);
-  $resultado = pg_execute($conexao, "query_login", array($nome, $email, $senha, $id));
+  $resultado = pg_execute($conexao, "query_login", array($nome, $email, $pagamentoid, $pagamentosec, $senha, $id));
 }
 
 $num_linhas = pg_affected_rows($resultado);

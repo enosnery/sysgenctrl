@@ -15,8 +15,10 @@ $resultado = pg_query($conexao, $keyquery);
 $num_linhas = pg_num_rows($resultado);
 if($num_linhas > 0){
   while($row = pg_fetch_assoc($resultado)){
-$clientId = $row['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+$clientId = $row['pagamento_id'];
+$_SESSION['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
 $clientSecret = $row['pagamento_secret']; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
+$_SESSION = $row['pagamento_secret'];
 
 $options = [
   'client_id' => $clientId,

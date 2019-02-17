@@ -11,8 +11,9 @@ include('inc/cabecalho.inc');
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
           </div>
-           <div class="detalheProdutoContainer">
+           <div class="detalheProdutoContainer" style="overflow-y:scroll;">
              <?php include('cad_detalhe_motorista.php')?>
+           </div>
              <div class="detalheProdutoButtons">
                <button type='button' id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>
                <button type='button' class="btn btn-link seguirButton" title="Alterar" onclick="alterarUsuario()">Alterar</button>
@@ -32,13 +33,17 @@ include('inc/cabecalho.inc');
     var nome = document.getElementById("nome").value;
     var email = document.getElementById("email").value;
     var senha = document.getElementById("btn-senha").value;
+    var pagamentoid = document.getElementById("pagamentoid").value;
+    var pagamentosecret = document.getElementById("pagamentosecret").value;
     if(confirm("Deseja realmente alterar esse motorista?")){
     $.post("altera_motorista.php",
     {
       "index": index,
       "nome": nome,
       "email": email,
-      "senha": senha
+      "senha": senha,
+      "pid": pagamentoid,
+      "psec": pagamentosecret
     }, function (result){
       alert(result);
       window.location="cadmotorista.php";

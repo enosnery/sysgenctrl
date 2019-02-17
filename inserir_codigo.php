@@ -41,7 +41,6 @@ include('inc/cabecalho.inc');
             if(result === '1'){
               alert("Motorista não Cadastrado. Verifique o Código e Tente Novamente!")
             }
-
         }
 
     );}else{

@@ -13,8 +13,8 @@ $zipcode = $_SESSION['zipcode'];
 $city = $_SESSION['city'];
 $state = $_SESSION['state'];
 $paymentToken = $_POST['token'];
-$clientId = 'Client_Id_fcaded836d54be5a8597d1fb64a9d3c3be32dca9'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
-$clientSecret = 'Client_Secret_b6b437aa7bccb47df2cb43eacffb6cd2782c9606'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
+$clientId = $_SESSION['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+$clientSecret = $_SESSION['pagamento_secret']; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
 
 $options = [
   'client_id' => $clientId,

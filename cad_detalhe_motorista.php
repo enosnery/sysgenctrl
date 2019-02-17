@@ -7,7 +7,7 @@ include("inc/conectar.inc");
 include("inc/verifica_sessao.inc");
 $index = $_SESSION['prodIndex'];
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT idusuario, nome, email, login, codigo_motorista, cpf FROM usuario WHERE idusuario = $index;";
+$produtos = "SELECT idusuario, nome, email, login, codigo_motorista, cpf, pagamento_id, pagamento_secret FROM usuario WHERE idusuario = $index;";
 
 $resultado = pg_query($conexao, $produtos);
 
@@ -32,6 +32,8 @@ $i = 0 ;
   $login = $row['login'];
   $codigo = $row['codigo_motorista'];
   $cpf = $row['cpf'];
+  $pagamento_id = $row['pagamento_id'];
+  $pagamento_secret = $row['pagamento_secret'];
 	echo "<input id='index' name='index' type='hidden' value='$id'>";
   echo "<label for='nome'>Nome</label>";
 	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' maxlength='40'/>";
@@ -47,6 +49,12 @@ $i = 0 ;
 	echo "<input type='password' id='btn-senha' name='senha' class='prodDetailInput centAlign' value='' disabled>";
   echo "<a type='button' class='btn btn-primary' onclick='liberaSenha();'> Alterar Senha</a> ";
   echo "</input>";
+  echo "<br/>";
+  echo "<br/>";
+  echo "<label for='pagamentoid'>ID Gerencianet</label>";
+  echo "<input id='pagamentoid' name='pagamentoid' class='prodDetailInput centAlign' value='$pagamento_id' />";
+  echo "<label for='pagamentosecret'>Secret Gerencianet</label>";
+  echo "<input id='pagamentosecret' name='pagamentosecret' class='prodDetailInput centAlign' value='$pagamento_secret' />";
 }
 }
 

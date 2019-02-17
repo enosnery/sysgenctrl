@@ -5,7 +5,7 @@ include("inc/verifica_sessao.inc");
 
 $idmotorista = $_SESSION['id'];
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT id, valor_total, transaction_id, is_pendente, is_pagamento_pendente, is_unpaid FROM compras_pendentes where id_motorista = $idmotorista and date_register > current_timestamp - interval '1 day' ORDER BY id;";
+$produtos = "SELECT id, valor_total, transaction_id, is_pendente, is_pagamento_pendente, is_unpaid FROM compras_pendentes where id_motorista = $idmotorista and date_register > current_timestamp - interval '1 day' ORDER BY id DESC;";
 $usuario = "SELECT idusuario, nome FROM usuario where idusuario = $idmotorista;";
 $resultado = pg_query($conexao, $produtos);
 $resultusu = pg_query($conexao, $usuario);
@@ -65,7 +65,7 @@ echo "<tr>";
 		echo "<table id='estoqueListItem'>";
 		echo "<tr>";
 	  echo "<td id='estoquecodDesc' class='estoquecodDesc'>";
-		echo "<span style='margin-left:20px;'>$id <a style='font-size:20px;' onclick='historico($id);'><i class='fas fa-angle-down' style='color:#FFF'></i></a>";
+		echo "<span style='margin-left:20px;'>$id <a id=$id style='font-size:20px;' onclick='historico($id);'><i class='fas fa-angle-down' style='color:#FFF'></i></a>";
 		echo "</span>";
 		echo "</td>";
 		echo "<td id='estoquedescDesc' class='estoquedescDesc'>";
@@ -87,8 +87,8 @@ echo "<tr>";
 	echo "<span>$valor";
 	echo "</span>";
 	echo "</td>";
-	echo "<td id='estoqueqtdDesc' class='estoqueqtdDesc' >";
-	echo "<a style='font-size:20px;' onclick='confirmar($idcompra);'><i class='fas fa-check-circle' style='color:#000'></i></a>";
+	echo "<td id='estoqueqtdDesc' class='estoqueqtdDesc'>";
+	echo "<a id=$idcompra class='confirmarpendencias' style='font-size:20px;' ><i class='fas fa-check-circle' style='color:#000'></i></a>";
 }else if($row['is_pendente']==='f' && $row['is_pagamento_pendente']==='f'){
 
 	echo "<td class='green-div' style='width:90vw;background-color:#0B6623;color:white'> ";
@@ -103,7 +103,7 @@ echo "<tr>";
 	echo "</span>";
 	echo "</td>";
 	echo "<td id='estoqueqtdDesc' class='estoqueqtdDesc' >";
-	echo "<a style='font-size:20px;' onclick='confirmar($idcompra);'><i class='fas fa-check-circle' style='color:#fff'></i></a>";
+	echo "<a  id=$id  style='font-size:20px;'><i class='fas fa-check-circle' style='color:#fff'></i></a>";
 }
 	echo "</td>";
 	echo "</tr>";

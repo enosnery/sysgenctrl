@@ -23,15 +23,16 @@ if($ext !== 'jpg' && $ext !== 'jpeg' && $ext !== 'png'){
 }
 $filename = "resources/".uniqid("produto_").".".$ext;
 $nome = $_POST['nome'];
+$codigo = $_POST['codigo'];
 $valor = (float)str_replace(",", "",$_POST['valor']);
 $bucket -> upload(fopen($temp,'r'),[
           'name' => $filename
  ]);
 
  $filepath = "https://storage.googleapis.com/cloudwebbucket/".$filename;
- $produtos = "INSERT INTO produtos (descricao, valor, picture_url) VALUES  ($1, $2, $3);";
+ $produtos = "INSERT INTO produtos (descricao, valor, picture_url, codigo) VALUES  ($1, $2, $3, $4);";
  $resultado = pg_prepare($conexao, "query_insere", $produtos);
- $resultado = pg_execute($conexao, "query_insere", array($nome, $valor, $filepath));
+ $resultado = pg_execute($conexao, "query_insere", array($nome, $valor, $filepath, $codigo));
  $num_linhas = pg_affected_rows($resultado);
 
  if ($num_linhas > 0)

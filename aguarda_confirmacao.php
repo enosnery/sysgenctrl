@@ -28,4 +28,9 @@
   });
 }, 2000);
 
+$( window ).unload(function() {
+  alert("Deseja sair?")
+  alert("Deseja Realmente Sair? Sua saída acarreta no cancelamento da transação!");
+});
+
 </script>

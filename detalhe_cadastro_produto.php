@@ -7,7 +7,7 @@ include("inc/conectar.inc");
 include("inc/verifica_sessao.inc");
 $index = $_SESSION['prodIndex'];
 //query que seleciona o usuario e a senha do login informados
-$produtos = "SELECT id, descricao, picture_url, valor FROM produtos WHERE id = $index;";
+$produtos = "SELECT id, descricao, picture_url, valor, codigo FROM produtos WHERE id = $index;";
 
 $resultado = pg_query($conexao, $produtos);
 
@@ -29,16 +29,19 @@ $i = 0 ;
   $imagem = $row['picture_url'];
 	$id = $row['id'];
 	$nome = $row['descricao'];
+  $codigo = $row['codigo'];
 	$valor = number_format($row['valor'], 2, '.', '');
 	echo "<div class='prodDetailImg'>";
   echo "<img class='prodDetailImg img-responsive' src='$imagem' />";
 	echo "</div>";
-	echo "<input id='product-value-$i' class='form-control-file' style='margin-bottom:20px;' type='file' value='$nome'>";
+  echo "<input id='fotog' name='fotog' class='form-control-file' style='margin-bottom:20px;' type='file' value='$nome'>";
 	echo "<input id='index' name='index' type='hidden' value='$id' maxlength='40'>";
   echo "<label for='nome'>Nome</label>";
 	echo "<input id='nome' name='nome' class='prodDetailInput centAlign' value='$nome' maxlength='40'/>";
   echo "<label for='valor'>Valor</label>";
 	echo "<input id='valor' name='valor' class='prodDetailInput centAlign' value='$valor' maxlength='40'/>";
+  echo "<label for='codigo'>Código</label>";
+  echo "<input id='codigo' name='codigo' class='prodDetailInput centAlign' value='$codigo' maxlength='40'/>";
 }
 }
 

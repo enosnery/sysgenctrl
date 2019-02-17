@@ -41,7 +41,7 @@ include('inc/cabecalho.inc');
     var email = document.getElementById("email").value;
     if(!(login === null || login === "" || senha === null || senha === "" || nome === null || nome === "" || email === null || email === ""  )){
     if(confirm("Deseja finalizar o cadastro?")){
-    $.post("insere_usuario.php",
+    $.post("insere_usuario_cadastrese.php",
      {nome: nome,
       senha: senha,
       login: login,

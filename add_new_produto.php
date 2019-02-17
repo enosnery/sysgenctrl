@@ -19,6 +19,8 @@ include('inc/cabecalho.inc');
            	<input id='nome' name='nome' class='prodDetailInput centAlign' maxlength="40"/>
              <label for='valor'>Valor</label>
            	<input id='valor' name='valor' class='prodDetailInput centAlign' />
+            <label for='codigo'>Código</label>
+           <input id='codigo' name='codigo' class='prodDetailInput centAlign' />
                     </form>
              <div class="detalheProdutoButtons">
                <button type='button' id="cancel" class="btn btn-link cancelButton" title="Voltar" onclick="voltar();">Voltar</button>

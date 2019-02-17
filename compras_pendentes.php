@@ -67,6 +67,8 @@ $(document).ready(function(){
     window.location = "estoque_mot.php";
   }
 
+  
+
   function confirmar(index) {
     $.post("confirmar_transacao_mot.php",
     {index: index},
@@ -74,6 +76,7 @@ $(document).ready(function(){
        alert("Compra confirmada com Sucesso!");
        $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
      });
+
   }
   function removeProd(index) {
     if(confirm("Deseja realmente remover esse produto?")){

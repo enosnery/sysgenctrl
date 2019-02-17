@@ -3,8 +3,7 @@ session_start();
 include("inc/conectar.inc");
 // include("inc/verifica_sessao.inc");
 //recebendo as variaveis do formulario
-$codigo = strtolower($_POST['codigo']);
-
+$codigo = $_POST['codigo'];
 //query que seleciona o usuario e a senha do login informados
 // $login_usuario = "CREATE TABLE \"usuarios\"(id integer);";
 $verificacod = "SELECT idusuario FROM usuario  WHERE is_motorista AND codigo_motorista = $1 ";
