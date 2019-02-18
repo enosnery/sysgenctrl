@@ -28,6 +28,7 @@ while($row = pg_fetch_assoc($resultusu)){
 	$idusu = $row['idusuario'];
 	$nome = $row['nome'];
 echo  "<div class='menuHeader list-group-item list-group-item-action' style='min-height:2em;border-bottom:1px solid black'>";
+echo "<a onclick='reload()' class='fas fa-sync-alt' style='float:right;margin-left:10px;'></a>";
 echo  "<span style='font-size:15px;text-align:left;float:right'>Código: $idusu</span>" ;
 echo  "<span style='font-size:15px;text-align:right;float:left'>Motorista: $nome</span>" ;
 echo  "</div>";
@@ -88,7 +89,7 @@ echo "<tr>";
 	echo "</span>";
 	echo "</td>";
 	echo "<td id='estoqueqtdDesc' class='estoqueqtdDesc'>";
-	echo "<a id=$idcompra class='confirmarpendencias' style='font-size:20px;' ><i class='fas fa-check-circle' style='color:#000'></i></a>";
+	echo "<a id=$idcompra class='confirmarpendencias' style='font-size:20px;' onclick='confirmar($idcompra, $id)'><i class='fas fa-check-circle' style='color:#000'></i></a>";
 }else if($row['is_pendente']==='f' && $row['is_pagamento_pendente']==='f'){
 
 	echo "<td class='green-div' style='width:90vw;background-color:#0B6623;color:white'> ";

@@ -22,7 +22,7 @@
     echo "</div>";
     echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('imagemcampanha');>";
     echo "<span class='customIcon fas fa-camera' ></span>";
-    echo "<button type='button'>Alterar Imagem da Campanha</button>";
+    echo "<button type='button'>Alterar Imagem Inicial</button>";
     echo "</div>";
     echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('inserir_codigo');>";
     echo "<span class='customIcon fas fa-user-check' ></span>";

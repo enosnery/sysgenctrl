@@ -6,7 +6,7 @@ require __DIR__.'/vendor/autoload.php'; // caminho relacionado a SDK
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
- $data = json_decode($_POST['items'], true);
+$data = json_decode($_POST['items'], true);
 $idmotorista = $_SESSION['$motorista'];
 
 $keyquery = "SELECT pagamento_id, pagamento_secret FROM usuario WHERE idusuario = $idmotorista;";
@@ -16,7 +16,7 @@ $num_linhas = pg_num_rows($resultado);
 if($num_linhas > 0){
   while($row = pg_fetch_assoc($resultado)){
 $clientId = $row['pagamento_id'];
-$_SESSION['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+$_SESSION['pagamento_id'] = $row['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
 $clientSecret = $row['pagamento_secret']; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
 $_SESSION = $row['pagamento_secret'];
 
@@ -60,7 +60,7 @@ for ($i=0; $i < count($data) ; $i++) {
 //    'items' => $items,
 //    'metadata' => $metadata
 // ];
-$metadata = array('notification_url'=>'http://35.231.173.150/market-homolog/gn_confirma_transacao.php');
+$metadata = array('notification_url'=>'http://35.231.173.150/market/gn_confirma_transacao.php');
 
 $body  =  [
     'items' => $items,

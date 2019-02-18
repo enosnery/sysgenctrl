@@ -51,12 +51,17 @@ border-bottom:2px solid black;
      </div>
   </body>
   <script type="text/javascript">
+  var isRequest = true;
 $(document).ready(function(){
   setInterval(function(){
     console.log("deu 1 refresh");
   $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
-},10000);
+  },10000);
 });
+
+function reload(){
+  $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
+}
   function voltar() {
     if(confirm("Deseja Encerrar a Sessão?")){
   window.location = "logout.php";
@@ -67,16 +72,25 @@ $(document).ready(function(){
     window.location = "estoque_mot.php";
   }
 
-  
 
-  function confirmar(index) {
+
+  function confirmar(index, transaction) {
+if(isRequest === true){
+  isRequest = false;
+    if(confirm("Deseja confirmar essa Compra?")){
     $.post("confirmar_transacao_mot.php",
     {index: index},
      function (result){
        alert("Compra confirmada com Sucesso!");
+       alert("Enviando dados para confirmação de Pagamento...");
+       var newwindow=window.open("getpaymenttoken.php?transactionid="+transaction,"ubervenda",'height=200,width=150');
+       if (window.focus) {newwindow.focus()}
+       console.log(transaction);
+       isRequest = true;
        $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
      });
-
+  }
+  }
   }
   function removeProd(index) {
     if(confirm("Deseja realmente remover esse produto?")){

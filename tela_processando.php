@@ -1,23 +1,23 @@
 <?php
- session_start();
  include("inc/cabecalho.inc");
   ?>
   <body>
     <div class="waitconfirmation">
-      <h3>Aguardando Confirmação do Motorista</h3>
+      <h3>Processando Pagamento</h3>
       <h4>ID da Compra: <?php include("transaction_code.php"); ?></h4>
     </div>
   <div class="loader" id="loader"></div>
 </body>
 </html>
 <script type="text/javascript">
-
-  setInterval(function(){  $.post("getconfirmation.php",
+function getStatus(){
+  setInterval(function(){  $.post("get_transaction_status.php",
   {},function(result){
     if(result === "1"){
       console.log("deucerto");
       console.log(result);
-      window.location = "tela_processando.php";
+      alert("Pagamento Concluído com Sucesso!");
+      window.location = "index.php";
 
     }else{
       console.log(result);
@@ -27,10 +27,5 @@
 
   });
 }, 2000);
-
-$( window ).unload(function() {
-  alert("Deseja sair?")
-  alert("Deseja Realmente Sair? Sua saída acarreta no cancelamento da transação!");
-});
-
+}
 </script>

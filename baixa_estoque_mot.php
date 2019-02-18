@@ -3,28 +3,26 @@ session_start();
 include("inc/conectar.inc");
 
 
- $data = json_decode($_SESSION['$data'], true);
- $ids = json_decode($_SESSION['$ids'], true);
- $idmotorista = $_SESSION['$motorista'];
+ // $data = json_decode($_SESSION['$data'], true);
+ // $ids = json_decode($_SESSION['$ids'], true);
+ $transaction = $_GET['transaction_id'];
 
+ $prodlist = "SELECT count(t.id_produto) as a, t.id_motorista as b, t.transaction_id as c, t.id_produto as d FROM transactions t WHERE transaction_id = $transaction::text GROUP BY t.id_motorista, t.transaction_id, t.id_produto;";
+$result1 = pg_query($conexao, $prodlist);
 
-$quantidade = 0;
-for($j=0; $j < count($ids); $j++){
+while ($row = pg_fetch_assoc($result1)) {
+  $quantidade = $row['a'];
+  $idmotorista = $row['b'];
+  $idproduto = $row['d'];
 
-  for ($i=0; $i < count($data) ; $i++) {
-      if($data[$i]['item'] == $ids[$j] )
-      {
-        $quantidade++;
-      }
-}
-if($quantidade != 0){
-$update = "UPDATE estoque_motorista SET quantidade_atual = quantidade_atual - $quantidade WHERE idmotorista = $idmotorista and id_produto = $ids[$j];";
-$result = pg_query($conexao, $update);
+  $update = "UPDATE estoque_motorista SET quantidade_atual = quantidade_atual - $quantidade WHERE idmotorista = $idmotorista and id_produto = $idproduto;";
+  $result = pg_query($conexao, $update);
 
 }
-$quantidade = 0;
 
-}
-header("Location: index.php");
+
+echo $result;
+
+// header("Location: index.php");
 
 ?>

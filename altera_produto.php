@@ -6,7 +6,7 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 require 'vendor/autoload.php';
 use Google\Cloud\Storage\StorageClient;
 include("inc/conectar.inc");
-include("inc/verifica_sessao.inc");
+
 $id = $_POST['index'];
 $nome = $_POST['nome'];
 $valor = $_POST['valor'];

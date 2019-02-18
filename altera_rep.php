@@ -6,18 +6,20 @@ if(session_status() !== PHP_SESSION_ACTIVE){
 include("inc/conectar.inc");
 include("inc/verifica_sessao.inc");
 $id = $_POST['index'];
-$nome = $_POST['nome'];
-$email = $_POST['email'];
+$nome = isset($_POST['nome']) ? $_POST['nome'] : null ;
+$email = isset($_POST['email']) ? $_POST['email'] : null ;
 $senha = isset($_POST['senha']) ? $_POST['senha'] : null ;
+$pagamentoid = isset($_POST['pag1']) ? $_POST['pag1'] : null ;
+$pagamentosec = isset($_POST['pags']) ? $_POST['pags'] : null ;
 if ($senha === null) {
-    $produtos = "UPDATE usuario SET nome = $1, email = $2 WHERE idusuario = $3;";
+  if($pag1 !== null)
+    $produtos = "UPDATE usuario SET nome = $1, email = $2, pagamento_id = $3, pagamento_secret = $4  WHERE idusuario = $5;";
     $resultado = pg_prepare($conexao, "query_login", $produtos);
-    $resultado = pg_execute($conexao, "query_login", array($nome, $email, $id));
+    $resultado = pg_execute($conexao, "query_login", array($nome, $email, $pagamentoid, $pagamento_secret, $id));
 }else{
-  $produtos = "UPDATE usuario SET nome = $1, email = $2, senha =  $3 WHERE idusuario = $4;";
-
+  $produtos = "UPDATE usuario SET nome = $1, email = $2, senha = $3, pagamento_id = $4, pagamento_secret = $5 WHERE idusuario = $6;";
   $resultado = pg_prepare($conexao, "query_login", $produtos);
-  $resultado = pg_execute($conexao, "query_login", array($nome, $email, $senha, $id));
+  $resultado = pg_execute($conexao, "query_login", array($nome, $email, $senha,$pagamentoid, $pagamentosec, $id));
 }
 
 $num_linhas = pg_affected_rows($resultado);

@@ -32,6 +32,12 @@ $current_date = date('Y-m-d H:i:s');
 $pendente = "INSERT INTO compras_pendentes (id_motorista, is_pendente, valor_total, transaction_id, date_register) VALUES ($idmotorista, TRUE, $valortotal, $transaction, current_timestamp);";
 $resultado = pg_query($conexao, $pendente);
 
+$transactioncarddata = "INSERT INTO temp_card_data (idmotorista, idtransaction, brand, number, cvv, expiration_month, expiration_year, street, street_number, neighboorhood, zipcode, city, state) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);";
+$result = pg_prepare($conexao, "temp_card_data", $transactioncarddata);
+$result = pg_execute($conexao, "temp_card_data", array($idmotorista, $transaction, $brand, $number, $cvv, $expmon, $expyear, $street, $streetnumber, $neighborhood, $zipcode, $city, $state));
+
+
+
 if (pg_affected_rows($resultado)>0){
 header("Location: aguarda_confirmacao.php");
 }else{

@@ -5,16 +5,16 @@ require __DIR__.'/vendor/autoload.php'; // caminho relacionado a SDK
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$charge_id = $_SESSION['charge_id'];
-$street = $_SESSION['street'];
-$streetnumber = $_SESSION['street_number'];
-$neighborhood = $_SESSION['neighborhood'];
-$zipcode = $_SESSION['zipcode'];
-$city = $_SESSION['city'];
-$state = $_SESSION['state'];
+$charge_id = $_POST['charge_id'];
+$street = $_POST['street'];
+$streetnumber = $_POST['street_number'];
+$neighborhood = $_POST['neighborhood'];
+$zipcode = $_POST['zipcode'];
+$city = $_POST['city'];
+$state = $_POST['state'];
 $paymentToken = $_POST['token'];
-$clientId = $_SESSION['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
-$clientSecret = $_SESSION['pagamento_secret']; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
+$clientId = $_POST['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+$clientSecret = $_POST['pagamento_secret']; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
 
 $options = [
   'client_id' => $clientId,

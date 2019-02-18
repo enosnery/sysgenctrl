@@ -14,7 +14,7 @@ include('inc/cabecalho.inc');
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
           </div>
-          <form id="alteraProd" action="altera_produto.php" method="post">
+          <form id="alteraProd" action="altera_produto.php" method="post" enctype="multipart/form-data">
            <div class="detalheProdutoContainer">
              <?php include('detalhe_cadastro_produto.php')?>
              <div class="detalheProdutoButtons">
