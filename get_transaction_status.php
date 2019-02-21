@@ -1,9 +1,16 @@
 <?php
 session_start();
 include("inc/conectar.inc");
-
+if(isset($_POST['idmotorista'])){
 $idmotorista = $_POST['idmotorista'];
+}else{
+	$idmotorista = $_SESSION['$motorista'];
+}
+if(isset($_POST['charge_id'])){
 $transaction = $_POST['charge_id'];
+}else{
+	$transaction = $_SESSION['charge_id'];
+}
 //query que seleciona o usuario e a senha do login informados
 $produtos = "SELECT id FROM compras_pendentes where id_motorista = $idmotorista and is_pagamento_pendente and transaction_id = '$transaction' ORDER BY id;";
 $resultado = pg_query($conexao, $produtos);

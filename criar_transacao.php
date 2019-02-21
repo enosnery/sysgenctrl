@@ -60,7 +60,7 @@ for ($i=0; $i < count($data) ; $i++) {
 //    'items' => $items,
 //    'metadata' => $metadata
 // ];
-$metadata = array('notification_url'=>'http://35.231.173.150/market/gn_confirma_transacao.php');
+$metadata = array('notification_url'=>'http://35.231.173.150/market/gn_confirma_transacao.php?idmotorista='.$idmotorista);
 
 $body  =  [
     'items' => $items,

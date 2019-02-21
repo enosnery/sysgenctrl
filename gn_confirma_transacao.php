@@ -6,9 +6,14 @@ require __DIR__.'/vendor/autoload.php'; // caminho relacionado a SDK
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$clientId = $_SESSION['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
-$clientSecret = $_SESSION['pagamento_secret'];; // insira seu Client_Secret, conforme o ambiente (Des ou Prod
+$idmotorista = $_GET['idmotorista'];
 
+$update = "SELECT pagamento_id, pagamento_secret FROM usuario WHERE idusuario = $idmotorista;";
+$result = pg_query($conexao, $update);
+while ($row = pg_fetch_assoc($result)) {
+$clientId = $row['pagamento_id']; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
+$clientSecret = $row['pagamento_secret'];; // insira seu Client_Secret, conforme o ambiente (Des ou Prod
+}
 $options = [
   'client_id' => $clientId,
   'client_secret' => $clientSecret,
@@ -20,8 +25,11 @@ $options = [
 * Ex.: $_POST['notification']
 */
 $token = $_POST['notification'];
-echo "retorno";
+echo "retorno \n";
 echo $token;
+echo "\n";
+
+
 
 $params = [
   'token' => $token
@@ -46,10 +54,26 @@ try {
     $statusAtual = $status["current"];
 
     if($statusAtual === 'paid'){
-    $update = "UPDATE compras_pendentes SET is_pagamento_pendente = false where transaction_id = $charge_id::text";
+    $update = "UPDATE compras_pendentes SET is_pagamento_pendente = false, is_confirmacao_pendente = false where transaction_id = $charge_id::text";
     echo $update;
     $resultado = pg_query($conexao, $update);
-    }
+
+    $prodlist = "SELECT count(t.id_produto) as a, t.id_motorista as b, t.transaction_id as c, t.id_produto as d FROM transactions t WHERE transaction_id = $charge_id::text GROUP BY t.id_motorista, t.transaction_id, t.id_produto;";
+   $result1 = pg_query($conexao, $prodlist);
+
+   while ($row = pg_fetch_assoc($result1)) {
+     $quantidade = $row['a'];
+     $idmotorista = $row['b'];
+     $idproduto = $row['d'];
+
+     $update = "UPDATE estoque_motorista SET quantidade_atual = quantidade_atual - $quantidade WHERE idmotorista = $idmotorista and id_produto = $idproduto;";
+     $result = pg_query($conexao, $update);
+
+   }
+
+   $clear_data = "DELETE FROM temp_card_data WHERE idtransaction = $charge_id";
+   $result = pg_query($conexao, $clear_data);
+}
     if($statusAtual === 'unpaid'){
     $update = "UPDATE compras_pendentes SET is_unpaid = true where transaction_id = $charge_id::text";
     echo $update;
@@ -58,6 +82,9 @@ try {
     // Com estas informações, você poderá consultar sua base de dados e atualizar o status da transação especifica, uma vez que você possui o "charge_id" e a String do STATUS
 
     echo "O id da transação é: ".$charge_id." seu novo status é: ".$statusAtual;
+
+    // header("Location: baixa_estoque_mot.php?transaction_id=$charge_id");
+
 
     //print_r($chargeNotification);
 } catch (GerencianetException $e) {

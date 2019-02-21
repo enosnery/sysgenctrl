@@ -17,7 +17,7 @@ input{
              </div>
           </div>
           <form action="card_data.php" method="post">
-           <div class="detalheProdutoContainer" style="height:70vh;overflow-y:scroll;">
+           <div class="dadosCartaoContainer" style="height:65vh;overflow-y:scroll;width: 90vw;margin: 0 auto;display: block;">
              <label for="nome">Cartão</label>
              <input id="number" class="form-control" type="text" name="number" value=""></input>
              <label for="nome">Mês</label>
@@ -102,9 +102,9 @@ input{
 	<option value="SE">Sergipe</option>
 	<option value="TO">Tocantins</option>
 </select>
-             <div class="detalheProdutoButtons">
-               <button class="btn btn-primary" type="submit">Continuar</button>
-             </div>
+           </div>
+           <div class="detalheProdutoButtons" style="display:block;margin: 0 auto;margin-top: 2vh;margin-left: 5vw;">
+             <button class="btn btn-primary" type="submit">Continuar</button>
            </div>
          </form>
 

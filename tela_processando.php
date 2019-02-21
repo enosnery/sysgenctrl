@@ -8,8 +8,9 @@
     </div>
   <div class="loader" id="loader"></div>
 </body>
-</html>
+
 <script type="text/javascript">
+console.log("entrou na pagina");
 function getStatus(){
   setInterval(function(){  $.post("get_transaction_status.php",
   {},function(result){
@@ -29,3 +30,4 @@ function getStatus(){
 }, 2000);
 }
 </script>
+</html>

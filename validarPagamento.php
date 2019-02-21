@@ -57,7 +57,7 @@ $creditCard = [
 $payment = [
   'credit_card' => $creditCard // forma de pagamento (credit_card = cartão)
 ];
-echo $payment;
+
 $body = [
   'payment' => $payment
 ];

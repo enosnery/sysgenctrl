@@ -25,25 +25,35 @@
 
 }
 
+$update = "UPDATE compras_pendentes SET is_confirmacao_pendente = false WHERE transaction_id = $charge_id::text;";
+$result = pg_query($conexao, $update);
+
 echo "<body>";
-    echo "<input id='street' value='$street'></input>";
-    echo "<input id='street_number' value='$streetnumber'></input>";
-    echo "<input id='neighborhood' value='$neighborhood'></input>";
-    echo "<input id='city' value='$city'></input>";
-    echo "<input id='state' value='$state'></input>";
-    echo "<input id='zipcode' value='$zipcode'></input>";
-    echo "<input id='clientId' value='$clientId'</input>";
-    echo "<input id='clientSecret' value='$clientSecret'></input>";
-    echo "<input id='chargeId' value='$charge_id'></input>";
-    echo "<input id='brand' value='$brand'></input>";
-    echo "<input id='cvv' value='$cvv'></input>";
-    echo "<input id='number' value='$number'></input>";
-    echo "<input id='expmon' value='$expmon'></input>";
-    echo "<input id='expyear' value='$expyear'></input>";
-    echo "<input id='idtransaction' value='$idtransaction'></input>";
-    echo "<input id='idmotorista' value='$idmotorista'></input>";
-  echo '</body>';
+echo "<div style='display:none;'>";
+    echo "<input type='hidden' id='street' value='$street'></input>";
+    echo "<input type='hidden' id='street_number' value='$streetnumber'></input>";
+    echo "<input type='hidden' id='neighborhood' value='$neighborhood'></input>";
+    echo "<input type='hidden' id='city' value='$city'></input>";
+    echo "<input type='hidden' id='state' value='$state'></input>";
+    echo "<input type='hidden' id='zipcode' value='$zipcode'></input>";
+    echo "<input type='hidden' id='clientId' value='$clientId'</input>";
+    echo "<input type='hidden' id='clientSecret' value='$clientSecret'></input>";
+    echo "<input type='hidden' id='chargeId' value='$charge_id'></input>";
+    echo "<input type='hidden' id='brand' value='$brand'></input>";
+    echo "<input type='hidden' id='cvv' value='$cvv'></input>";
+    echo "<input type='hidden' id='number' value='$number'></input>";
+    echo "<input type='hidden' id='expmon' value='$expmon'></input>";
+    echo "<input type='hidden' id='expyear' value='$expyear'></input>";
+    echo "<input type='hidden' id='idtransaction' value='$idtransaction'></input>";
+    echo "<input type='hidden' id='idmotorista' value='$idmotorista'></input>";
+echo "</div>";
   ?>
+  <div class="waitconfirmation">
+    <h3>Enviando dados para Pagamento</h3>
+    <h4>ID da Compra: <?php  echo $_GET['transactionid']; ?></h4>
+  </div>
+<div class="loader" id="loader"></div>
+</body>
 <script type='text/javascript'>var s=document.createElement('script');s.type='text/javascript';var v=parseInt(Math.random()*1000000);s.src='https://sandbox.gerencianet.com.br/v1/cdn/a44177e8cdfe392334de0cf988b19987/'+v;s.async=false;s.id='a44177e8cdfe392334de0cf988b19987';if(!document.getElementById('a44177e8cdfe392334de0cf988b19987')){document.getElementsByTagName('head')[0].appendChild(s);};$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};</script>
 <script type="text/javascript">
 var street = document.getElementById('street').value;
@@ -83,7 +93,7 @@ var payment = response.data.payment_token;
     "pagamento_secret": pagamento_secret,
     "charge_id": charge_id
   },function(result){
-      window.location="baixa_estoque_mot.php?transaction_id="+charge_id;
+      window.location="compras_pendentes.php";
   });
   }
 };

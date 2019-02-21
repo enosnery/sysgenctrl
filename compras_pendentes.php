@@ -37,8 +37,8 @@ border-bottom:2px solid black;
                <button type="button">Compras Pendentes</button>
                <img class="logoadm img-responsive" src="<?php include('get_logo.php');?>"/>
              </div>
-             <div class='menuHeader list-group-item list-group-item-action' style='min-height:2em;border-bottom:1px solid black'>
-               <span style='font-size:15px;text-align:left;float:right' onclick="goToEstoque();">Ver Estoque <i class="fas fa-angle-right"></i></span>
+             <div class="menuHeader list-group-item list-group-item-action" style="min-height:2em;border-bottom:1px solid black" onclick="goToEstoque();">
+               <span style="font-size:15px;text-align:left;float:right" >Ver Estoque <i class="fas fa-angle-right"></i></span>
             </div>
            <div id="listaCadastro" class="listaCadastro">
              <?php include('lista_compras_pendentes.php')?>
@@ -53,6 +53,7 @@ border-bottom:2px solid black;
   <script type="text/javascript">
   var isRequest = true;
 $(document).ready(function(){
+  isRequest = true;
   setInterval(function(){
     console.log("deu 1 refresh");
   $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
@@ -83,11 +84,10 @@ if(isRequest === true){
      function (result){
        alert("Compra confirmada com Sucesso!");
        alert("Enviando dados para confirmação de Pagamento...");
-       var newwindow=window.open("getpaymenttoken.php?transactionid="+transaction,"ubervenda",'height=200,width=150');
-       if (window.focus) {newwindow.focus()}
        console.log(transaction);
-       isRequest = true;
-       $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
+       window.location = "getpaymenttoken.php?transactionid="+transaction;
+       // isRequest = true;
+       // $("#listaCadastro").load("compras_pendentes.php #listaCadastro");
      });
   }
   }

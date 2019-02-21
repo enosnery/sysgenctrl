@@ -20,6 +20,9 @@ while ($row = pg_fetch_assoc($result1)) {
 
 }
 
+$clear_data = "DELETE FROM temp_card_data WHERE idtransaction = $transaction";
+$result = pg_query($conexao, $clear_data);
+
 
 echo $result;
 
