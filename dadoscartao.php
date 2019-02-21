@@ -62,14 +62,8 @@ input{
                <option value="diners">Diners</option>
                <option value="amex">American Express</option>
              </select>
-             <label for="nome">Endereço</label>
-             <input id="street" class="form-control" type="text" name="street" value=""></input>
-             <label for="nome">Número</label>
-             <input id="street_number" class="form-control" type="text" name="street_number" value=""></input>
-             <label for="nome">Bairro</label>
-             <input id="neighborhood" class="form-control" type="text" name="neighborhood" value=""></input>
              <label for="nome">CEP</label>
-             <input id="zipcode" class="form-control" type="text" name="zipcode" value=""></input>
+             <input id="zipcode" class="form-control" type="text" name="zipcode" value="" onblur="pesquisacep()"></input>
              <label for="nome">Cidade</label>
              <input id="city" class="form-control" type="text" name="city" value=""></input>
              <label for="nome">Estado</label>
@@ -102,6 +96,13 @@ input{
 	<option value="SE">Sergipe</option>
 	<option value="TO">Tocantins</option>
 </select>
+             <label for="nome">Endereço</label>
+             <input id="street" class="form-control" type="text" name="street" value=""></input>
+             <label for="nome">Número</label>
+             <input id="street_number" class="form-control" type="text" name="street_number" value=""></input>
+             <label for="nome">Bairro</label>
+             <input id="neighborhood" class="form-control" type="text" name="neighborhood" value=""></input>
+
            </div>
            <div class="detalheProdutoButtons" style="display:block;margin: 0 auto;margin-top: 2vh;margin-left: 5vw;">
              <button class="btn btn-primary" type="submit">Continuar</button>
@@ -112,6 +113,88 @@ input{
 
   </body>
 <script type="text/javascript">
+$(document).ready(function(){
+  $("#cvv").mask('999');
+  $("#number").mask('9999 9999 9999 9999');
+  $("#zipcode").mask('99999-999');
+
+});
+
+function limpa_formulário_cep() {
+           //Limpa valores do formulário de cep.
+           document.getElementById("street").value=("");
+           document.getElementById("neighborhood").value=("");
+           document.getElementById("city").value=("");
+           document.getElementById("state").value=("");
+
+           document.getElementById("zipcode").value=("");
+
+
+   }
+
+   function buscacep(result) {
+       if (!("erro" in result)) {
+           //Atualiza os campos com os valores.
+           document.getElementById("street").value=(result.address);
+           document.getElementById("neighborhood").value=(result.district);
+           document.getElementById("city").value=(result.city);
+           document.getElementById("state").value=(result.state);
+
+
+       } //end if.
+       else {
+           //CEP não Encontrado.
+           limpa_formulário_cep();
+           alert("CEP não encontrado.");
+       }
+   }
+
+   function pesquisacep() {
+
+
+       var valor = document.getElementById("zipcode").value;
+       console.log(valor);
+       //Nova variável "cep" somente com dígitos.
+       var cep = valor.replace(/\D/g, '');
+
+       //Verifica se campo cep possui valor informado.
+       if (cep != "") {
+
+           //Expressão regular para validar o CEP.
+           var validacep = /^[0-9]{8}$/;
+
+           //Valida o formato do CEP.
+           if(validacep.test(cep)) {
+
+               //Preenche os campos com "..." enquanto consulta webservice.
+               document.getElementById("street").value="...";
+               document.getElementById("neighborhood").value="...";
+               document.getElementById("city").value="...";
+
+                //Cria um elemento javascript.
+               $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep },
+               function(result){
+                   if( result.status!=1 ){
+                      alert(result.message || "Houve um erro desconhecido");
+                      return;
+                   }
+                   console.log("vai chamar o buscacep");
+               buscacep(result);
+               });
+
+           } //end if.
+           else {
+               //cep é inválido.
+               limpa_formulário_cep();
+               alert("Formato de CEP inválido.");
+           }
+       } //end if.
+       else {
+           //cep sem valor, limpa formulário.
+           limpa_formulário_cep();
+       }
+   };
+
 
 
 </script>
