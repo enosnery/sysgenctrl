@@ -21,7 +21,7 @@ $num_linhasusu = pg_num_rows($resultusu);
 //$login = $resultado['LOGIN'];
 
 //se retonou algum resultado, executar o registro do usuario
-if ($num_linhas > 0 && $num_linhasusu > 0)
+if ($num_linhasusu > 0)
 	{
 $i = 0 ;
 while($row = pg_fetch_assoc($resultusu)){
@@ -32,6 +32,7 @@ echo  "<span class='fas fa-plus' style='font-size:1.2em;margin-left:10px;float:r
 echo  "<span style='font-size:15px;text-align:left;float:right'>Código: $idusu</span>" ;
 echo  "<span style='font-size:15px;text-align:right;float:left'>Usuário: $nome</span>" ;
 echo  "</div>";
+if($num_linhas > 0){
 echo "<table id=estoqueTable>";
 echo "<tr>";
 echo "<td style='width:90vw'> ";
@@ -89,6 +90,11 @@ echo "<tr>";
 	echo "</div>";
 	echo "</tr>";
 	echo "<tr>";
+}
+}else{
+	echo  "<div class='menuHeader list-group-item list-group-item-action' style='min-height:2em;border-bottom:1px solid black'>";
+	echo  "<span style='font-size:15px;text-align:left;'>Você não possui nenhum Produto em estoque!</span>" ;
+	echo  "</div>";
 }
 }
 }

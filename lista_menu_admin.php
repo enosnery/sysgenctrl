@@ -4,10 +4,6 @@
     echo "<span class='customIcon fas fa-exchange-alt'></span>";
     echo "<button type='button'>Estoque/Transferência</button>";
     echo "</div>";
-    echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadmotorista');>";
-    echo "<span class='customIcon fas fa-car-alt'></span>";
-    echo "<button type='button'>Cadastro de Motoristas</button>";
-    echo "</div>";
     echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadproduto');>";
     echo "<span class='customIcon fas fa-shopping-basket' ></span>";
     echo "<button type='button'>Cadastro de Produtos</button>";
@@ -15,6 +11,10 @@
     echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadusuario');>";
     echo "<span class='customIcon fas fa-users' ></span>";
     echo "<button type='button'>Cadastro de Usuários</button>";
+    echo "</div>";
+    echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadmotorista');>";
+    echo "<span class='customIcon fas fa-car-alt'></span>";
+    echo "<button type='button'>Cadastro de Motoristas</button>";
     echo "</div>";
     echo "<div class='list-group-item list-group-item-action' onclick=redirectTo('cadrepresentante');>";
     echo "<span class='customIcon fas fa-user-tie' ></span>";

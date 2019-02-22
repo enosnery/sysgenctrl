@@ -43,7 +43,7 @@ $i = 0 ;
   $documento = $row['documento_url'];
 	echo "<input id='index' name='index' type='hidden' value='$id'>";
   echo "<label for='documento'>Documento</label>";
-  if($documento !== null){
+  if($documento !== null && $documento !== ''){
   echo "<div class='prodDetailImg'>";
   echo "<img class='prodDetailImg img-responsive' width='320px;' src='$documento' />";
   echo "</div>";
@@ -70,34 +70,137 @@ $i = 0 ;
   echo "<label for='city'>Cidade</label>";
   echo "<input id='city' name='city' class='prodDetailInput centAlign' value='$city' />";
   echo "<label for='state'>Estado</label>";
-  echo "<select name='state' id='state' class='form-control'>";
-echo     "<option value='AC'>Acre</option>";
-echo     "<option value='AL'>Alagoas</option>";
-echo     "<option value='AP'>Amapá</option>";
-echo     "<option value='AM'>Amazonas</option>";
-echo     "<option value='BA'>Bahia</option>";
-echo     "<option value='CE'>Ceará</option>";
-echo     "<option value='DF'>Distrito Federal</option>";
-echo     "<option value='ES'>Espírito Santo</option>";
-echo     "<option value='GO'>Goiás</option>";
-echo     "<option value='MA'>Maranhão</option>";
-echo     "<option value='MT'>Mato Grosso</option>";
-echo     "<option value='MS'>Mato Grosso do Sul</option>";
-echo     "<option value='MG'>Minas Gerais</option>";
-echo     "<option value='PA'>Pará</option>";
-echo     "<option value='PB'>Paraíba</option>";
-echo     "<option value='PR'>Paraná</option>";
-echo     "<option value='PE'>Pernambuco</option>";
-echo     "<option value='PI'>Piauí</option>";
-echo     "<option value='RJ'>Rio de Janeiro</option>";
-echo     "<option value='RN'>Rio Grande do Norte</option>";
-echo     "<option value='RS'>Rio Grande do Sul</option>";
-echo     "<option value='RO'>Rondônia</option>";
-echo     "<option value='RR'>Roraima</option>";
-echo     "<option value='SC'>Santa Catarina</option>";
-echo     "<option value='SP'>São Paulo</option>";
-echo     "<option value='SE'>Sergipe</option>";
-echo     "<option value='TO'>Tocantins</option>";
+  echo "<select name='state' id='state' class='form-control' >";
+if($state === 'AC') {
+  echo "<option value='AC' selected>Acre</option>";
+}else{
+  echo "<option value='AC'>Acre</option>";
+}
+if($state === 'AL') {
+  echo "<option value='AL' selected>Alagoas</option>";
+}else{
+  echo "<option value='AL'>Alagoas</option>";
+}
+if($state === 'AP') {
+  echo "<option value='AP' selected>Amapá</option>";
+}else{
+  echo "<option value='AP'>Amapá</option>";
+}
+if($state === 'AM') {
+  echo "<option value='AM' selected>Amazonas</option>";
+}else{
+  echo "<option value='AM'>Amazonas</option>";
+}
+if($state === 'BA') {
+  echo "<option value='BA' selected>Bahia</option>";
+}else{
+  echo "<option value='BA'>Bahia</option>";
+}
+if($state === 'CE') {
+  echo "<option value='CE' selected>Ceará</option>";
+}else{
+  echo "<option value='CE'>Ceará</option>";
+}
+if($state === 'DF') {
+  echo "<option value='DF' selected>Distrito Federal</option>";
+}else{
+  echo "<option value='DF'>Distrito Federal</option>";
+}
+if($state === 'ES') {
+  echo "<option value='ES' selected>Espírito Santo</option>";
+}else{
+  echo "<option value='ES'>Espírito Santo</option>";
+}
+if($state === 'GO') {
+  echo "<option value='GO' selected>Goiás</option>";
+}else{
+  echo "<option value='GO'>Goiás</option>";
+}
+if($state === 'MA') {
+  echo "<option value='MA' selected>Maranhão</option>";
+}else{
+  echo "<option value='MA'>Maranhão</option>";
+}
+if($state === 'MT') {
+  echo "<option value='MT' selected>Mato Grosso</option>";
+}else{
+  echo "<option value='MT'>Mato Grosso</option>";
+}
+if($state === 'MS') {
+  echo "<option value='MS' selected>Minas Gerais</option>";
+}else{
+  echo "<option value='MS'>Minas Gerais</option>";
+}
+if($state === 'PA') {
+  echo "<option value='PA' selected>Pará</option>";
+}else{
+  echo "<option value='PA'>Pará</option>";
+}
+if($state === 'PB') {
+  echo "<option value='PB' selected>Paraíba</option>";
+}else{
+  echo "<option value='PB'>Paraíba</option>";
+}
+if($state === 'PR') {
+  echo "<option value='PR' selected>Paraná</option>";
+}else{
+  echo "<option value='PR'>Paraná</option>";
+}
+if($state === 'PE') {
+  echo "<option value='PE' selected>Pernambuco</option>";
+}else{
+  echo "<option value='PE'>Pernambuco</option>";
+}
+if($state === 'PI') {
+  echo "<option value='PI' selected>Piauí</option>";
+}else{
+  echo "<option value='PI'>Piauí</option>";
+}
+if($state === 'RJ') {
+  echo "<option value='RJ' selected>Rio de Janeiro</option>";
+}else{
+  echo "<option value='RJ'>Rio de Janeiro</option>";
+}
+if($state === 'RN') {
+  echo "<option value='RN' selected>Rio Grande do Norte</option>";
+}else{
+  echo "<option value='RN'>Rio Grande do Norte</option>";
+}
+if($state === 'RS') {
+  echo "<option value='RS' selected>Rio Grande do Sul</option>";
+}else{
+  echo "<option value='RS'>Rio Grande do Sul</option>";
+}
+if($state === 'RO') {
+  echo "<option value='RO' selected>Rondônia</option>";
+}else{
+  echo "<option value='RO'>Rondônia</option>";
+}
+if($state === 'RR') {
+  echo "<option value='RR' selected>Roraima</option>";
+}else{
+  echo "<option value='RR'>Roraima</option>";
+}
+if($state === 'SC') {
+  echo "<option value='SC' selected>Santa Catarina</option>";
+}else{
+  echo "<option value='SC'>Santa Catarina</option>";
+}
+if($state === 'SP') {
+  echo "<option value='SP' selected>São Paulo</option>";
+}else{
+  echo "<option value='SP'>São Paulo</option>";
+}
+if($state === 'SE') {
+  echo "<option value='SE' selected>Sergipe</option>";
+}else{
+  echo "<option value='SE'>Sergipe</option>";
+}
+if($state === 'TO') {
+  echo "<option value='TO' selected>Tocantins</option>";
+}else{
+  echo "<option value='TO'>Tocantins</option>";
+}
   echo "</select>";
   echo "<label for='senha'>Senha</label>";
 	echo "<input type='password' id='btn-senha' name='senha' class='prodDetailInput centAlign' value='' disabled>";

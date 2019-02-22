@@ -35,28 +35,6 @@ include('inc/cabecalho.inc');
     $("#btn-senha").css("background-color","white");
     $("#btn-senha").css("border-bottom","2px solid gainsboro");
   }
-  // function alterarUsuario() {
-  //   var index = document.getElementById("index").value;
-  //   var nome = document.getElementById("nome").value;
-  //   var email = document.getElementById("email").value;
-  //   var senha = document.getElementById("btn-senha").value;
-  //   var pagamentoid = document.getElementById("pagamentoid").value;
-  //   var pagamentosecret = document.getElementById("pagamentosecret").value;
-  //   if(confirm("Deseja realmente alterar esse motorista?")){
-  //   $.post("altera_motorista.php",
-  //   {
-  //     "index": index,
-  //     "nome": nome,
-  //     "email": email,
-  //     "senha": senha,
-  //     "pid": pagamentoid,
-  //     "psec": pagamentosecret
-  //   }, function (result){
-  //     alert(result);
-  //     window.location="cadmotorista.php";
-  //   });
-  //   };
-  // }
   function voltar() {
     window.location = "cadmotorista.php";
   }
@@ -67,10 +45,7 @@ include('inc/cabecalho.inc');
              document.getElementById("neighborhood").value=("");
              document.getElementById("city").value=("");
              document.getElementById("state").value=("");
-
              document.getElementById("zipcode").value=("");
-
-
      }
 
      function buscacep(result) {
